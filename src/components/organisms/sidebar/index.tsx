@@ -1,4 +1,4 @@
-import { Category2 } from "@/assets/icons";
+import { Category1, Category2 } from "@/assets/icons";
 import { Nav } from "./nav";
 import { Logo } from "@/components/atoms/logo";
 
@@ -9,15 +9,29 @@ export const Sidebar = () => {
         <Logo />
       </div>
 
-      <Nav
-        links={[
-          {
-            title: "Справочник",
-            icon: <Category2 />,
-            to: "/a/directory",
-          },
-        ]}
-      />
+      <div className="mt-10">
+        <Nav
+          links={[
+            {
+              title: "Справочник",
+              icon: (props) => <Category2 color={props.color}/>,
+              to: "/a/directory",
+            },
+          ]}
+        />
+
+        <Nav
+          links={[
+            {
+              title: "Подбор ЖК",
+              icon: (props) => <Category1 color={props.color} />,
+              to: "/a/selection",
+            },
+          ]}
+        />
+      </div>
+
+
     </aside>
   );
 };
