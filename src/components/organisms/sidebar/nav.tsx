@@ -6,7 +6,7 @@ import { FC, ReactNode } from "react";
 interface NavProps {
   links: {
     title: string;
-    icon: ReactNode;
+    icon: (props: { color: string }) => ReactNode;
     to: string;
   }[];
 }
@@ -14,7 +14,7 @@ interface NavProps {
 export const Nav: FC<NavProps> = (props) => {
   const { links } = props;
   return (
-    <div className="group flex flex-col gap-4 py-2 h-full w-full mt-10">
+    <div className="group flex flex-col gap-4 py-2 w-full">
       <nav className="grid gap-1 px-2">
         {links.map((link, index) => (
           <Link key={index} to={link.to} className="w-full">
@@ -23,10 +23,10 @@ export const Nav: FC<NavProps> = (props) => {
                 <div
                   className={cn(
                     "w-full flex items-center text-base font-medium gap-2.5 p-2.5",
-                    isActive && "text-white bg-primary"
+                    isActive ? "text-white bg-primary" : "text-gray-500 bg-transparent"
                   )}
                 >
-                  {link.icon}
+                  {link.icon({ color: isActive ? "white" : "gray" })}
                   {link.title}
                 </div>
               );
