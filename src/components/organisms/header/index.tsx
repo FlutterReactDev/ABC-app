@@ -1,4 +1,4 @@
-import AvatarDropDown from "@/components/atoms/AvatarDropDown";
+import { AvatarDropdown } from "@/components/atoms/avatar-dropdown";
 
 const user = {
   name: "Егор Соколов",
@@ -9,11 +9,8 @@ const user = {
 
 export const Header = () => {
   return (
-    <header className="flex flex-row justify-between items-center w-full h-[40px] mt-3">
-      <div className="w-96 h-6 bg-gray-300"></div>
-      <div className="flex flex-row justify-between items-center gap-3">
-        <AvatarDropDown user={user} />
-      </div>
+    <header className="flex flex-row justify-end items-center w-full h-[40px] mt-3 px-12">
+      <AvatarDropdown user={user} />
     </header>
   );
 };

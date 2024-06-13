@@ -22,7 +22,7 @@ export const Nav: FC<NavProps> = (props) => {
               return (
                 <div
                   className={cn(
-                    "w-full flex items-center text-base font-medium gap-2.5 p-2.5",
+                    "w-full flex items-center text-base font-medium gap-2.5 p-2.5 rounded-lg",
                     isActive ? "text-white bg-primary" : "text-gray-500 bg-transparent"
                   )}
                 >
