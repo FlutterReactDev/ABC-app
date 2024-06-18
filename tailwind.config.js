@@ -9,9 +9,9 @@ export default {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        foreground: "#021425",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#1789F2",
           foreground: "hsl(var(--primary-foreground))",
         },
         green: {
@@ -23,12 +23,14 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#F22417",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
+        },
+        blue: {
+          DEFAULT: "#172DF2",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",

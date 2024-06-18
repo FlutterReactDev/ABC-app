@@ -114,7 +114,7 @@ export const DirectoryFilter = () => {
             <Button size={"icon"}>4+</Button>
           </div>
         </div>
-        <div className="flex flex-col gap-3 max-w-56">
+        <div className="flex flex-col gap-3 max-w-56 w-full">
           <Label>Срок сдачи</Label>
           <DeadlineSelect onChange={() => {}} />
           <Label>Отделка</Label>
