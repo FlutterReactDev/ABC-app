@@ -4,7 +4,7 @@ import { Logo } from "@/components/atoms/logo";
 
 export const Sidebar = () => {
   return (
-    <aside className="h-full w-full flex flex-col items-center bg-white border-l border">
+    <aside className="h-full w-full  flex-col items-center bg-white border-l border hidden md:flex">
       <div className="mt-6">
         <Logo />
       </div>
@@ -14,7 +14,7 @@ export const Sidebar = () => {
           links={[
             {
               title: "Справочник",
-              icon: (props) => <Category2 color={props.color}/>,
+              icon: (props) => <Category2 color={props.color} />,
               to: "/a/directory",
             },
           ]}
@@ -30,8 +30,6 @@ export const Sidebar = () => {
           ]}
         />
       </div>
-
-
     </aside>
   );
 };

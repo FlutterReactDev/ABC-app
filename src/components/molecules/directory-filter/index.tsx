@@ -13,7 +13,7 @@ export const DirectoryFilter = () => {
   return (
     <div className="bg-white p-4 flex flex-col gap-5">
       <Input placeholder="Поиск по Названию ЖК, застройщика, округам, районам, метро" />
-      <div className="flex gap-8">
+      <div className="flex gap-8  flex-wrap">
         <div className="flex flex-col gap-3 flex-1">
           <div className="flex flex-col gap-3">
             <Label>Город</Label>
@@ -108,10 +108,18 @@ export const DirectoryFilter = () => {
 
           <Label>Комнатность (ст)</Label>
           <div className="flex gap-1">
-            <Button size={"icon"}>1</Button>
-            <Button size={"icon"}>2</Button>
-            <Button size={"icon"}>3</Button>
-            <Button size={"icon"}>4+</Button>
+            <Button variant={"secondary"} size={"icon"}>
+              1
+            </Button>
+            <Button variant={"secondary"} size={"icon"}>
+              2
+            </Button>
+            <Button variant={"secondary"} size={"icon"}>
+              3
+            </Button>
+            <Button variant={"secondary"} size={"icon"}>
+              4+
+            </Button>
           </div>
         </div>
         <div className="flex flex-col gap-3 max-w-56 w-full">
