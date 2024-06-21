@@ -21,13 +21,21 @@ import {
 import { cn } from "@/lib/utils";
 
 import { ChevronDown, ChevronLeft, Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { Drawer } from "vaul";
 
 export const DirectoryPage = () => {
   const isMobile = useMedia("(max-width: 768px)");
-  const [snap, setSnap] = useState<number | string | null>("150px");
+  const [snap, setSnap] = useState<number | string | null>("200px");
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    if (!open) {
+      setOpen(true);
+      setSnap("200px");
+    }
+  }, [open]);
   return (
     <div className="w-full h-full">
       {!isMobile && <DirectoryFilter />}
@@ -131,12 +139,18 @@ export const DirectoryPage = () => {
       )}
       {isMobile && (
         <Drawer.Root
-          snapPoints={["150px", 1]}
+          snapPoints={["200px", 0.5, 1]}
           activeSnapPoint={snap}
-          setActiveSnapPoint={setSnap}
-          open
-          noBodyStyles
-          preventScrollRestoration
+          fadeFromIndex={1}
+          open={open}
+          setActiveSnapPoint={(snapPoint) => {
+            if (snapPoint) {
+              setSnap(snapPoint);
+            } else {
+              setSnap("200px");
+            }
+          }}
+          onOpenChange={setOpen}
         >
           {snap == 1 && (
             <Drawer.Overlay className="fixed inset-0 z-50 bg-black/80" />
@@ -161,7 +175,7 @@ export const DirectoryPage = () => {
                         <Menu />
                       </Button>
                     </SheetTrigger>
-                    <SheetContent className="sm:max-w-full">
+                    <SheetContent className="sm:max-w-full overflow-y-auto">
                       <SheetHeader>
                         <SheetTitle>Фильтр</SheetTitle>
                       </SheetHeader>
