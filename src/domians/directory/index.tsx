@@ -33,7 +33,7 @@ export const DirectoryPage = () => {
   useEffect(() => {
     if (!open) {
       setOpen(true);
-      setSnap("200px");
+      setSnap("160px");
     }
   }, [open]);
   return (
@@ -166,13 +166,16 @@ export const DirectoryPage = () => {
               <div className="mx-auto mt-4 h-8 w-[100px] rounded-full bg-muted" />
               <div
                 className={cn(
-                  "grid gap-1.5 p-4 text-center sm:text-left h-[100px]"
+                  "grid gap-1.5 p-4 text-center sm:text-left h-[60px]"
                 )}
               >
                 <div className="flex gap-2">
                   <Input
                     placeholder="Поиск по Названию ЖК, застройщика, округам, районам, метро"
                     className="flex-1 h-10"
+                    onFocus={() => {
+                      setSnap(1);
+                    }}
                   />
                   <Sheet>
                     <SheetTrigger asChild>
@@ -191,7 +194,7 @@ export const DirectoryPage = () => {
               </div>
               <div
                 className={cn("flex flex-col w-full p-4 pt-5", {
-                  "overflow-y-auto": snap === 1,
+                  "overflow-auto": snap === 1,
                   "overflow-hidden": snap !== 1,
                 })}
               >
