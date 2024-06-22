@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as ALayoutImport } from './routes/a/_layout'
+import { Route as ALayoutSettingsIndexImport } from './routes/a/_layout/settings/index'
 import { Route as ALayoutSelectionIndexImport } from './routes/a/_layout/selection/index'
 import { Route as ALayoutDirectoryIndexImport } from './routes/a/_layout/directory/index'
 
@@ -49,6 +50,11 @@ const IndexLazyRoute = IndexLazyImport.update({
 const ALayoutRoute = ALayoutImport.update({
   id: '/_layout',
   getParentRoute: () => ARoute,
+} as any)
+
+const ALayoutSettingsIndexRoute = ALayoutSettingsIndexImport.update({
+  path: '/settings/',
+  getParentRoute: () => ALayoutRoute,
 } as any)
 
 const ALayoutSelectionIndexRoute = ALayoutSelectionIndexImport.update({
@@ -114,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ALayoutSelectionIndexImport
       parentRoute: typeof ALayoutImport
     }
+    '/a/_layout/settings/': {
+      id: '/a/_layout/settings/'
+      path: '/settings'
+      fullPath: '/a/settings'
+      preLoaderRoute: typeof ALayoutSettingsIndexImport
+      parentRoute: typeof ALayoutImport
+    }
   }
 }
 
@@ -127,6 +140,7 @@ export const routeTree = rootRoute.addChildren({
     ALayoutRoute: ALayoutRoute.addChildren({
       ALayoutDirectoryIndexRoute,
       ALayoutSelectionIndexRoute,
+      ALayoutSettingsIndexRoute,
     }),
   }),
 })
@@ -165,7 +179,8 @@ export const routeTree = rootRoute.addChildren({
       "parent": "/a",
       "children": [
         "/a/_layout/directory/",
-        "/a/_layout/selection/"
+        "/a/_layout/selection/",
+        "/a/_layout/settings/"
       ]
     },
     "/a/_layout/directory/": {
@@ -174,6 +189,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/a/_layout/selection/": {
       "filePath": "a/_layout/selection/index.tsx",
+      "parent": "/a/_layout"
+    },
+    "/a/_layout/settings/": {
+      "filePath": "a/_layout/settings/index.tsx",
       "parent": "/a/_layout"
     }
   }
