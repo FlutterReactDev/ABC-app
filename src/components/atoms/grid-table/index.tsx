@@ -8,7 +8,7 @@ export const GridTable: FC<PropsWithChildren<GridTableProps>> = (props) => {
   const { cols, children } = props;
   return (
     <div
-      className={cn("grid grid-auto overflow-hidden ", {
+      className={cn("grid grid-auto overflow-hidden  w-full", {
         ["grid-cols-1"]: cols == 1,
         ["grid-cols-2"]: cols == 2,
         ["grid-cols-3"]: cols == 3,

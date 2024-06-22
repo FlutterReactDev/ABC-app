@@ -198,44 +198,7 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
           </div>
         </SheetTrigger>
         <SheetContent className="w-full sm:max-w-full overflow-y-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[730px_1fr]">
-            <div className="h-full w-full relative">
-              <Swiper
-                navigation={{
-                  prevEl: ".object-prev-button",
-                  nextEl: ".object-next-button",
-                }}
-                modules={[Navigation]}
-                className="w-full h-full"
-              >
-                <SwiperSlide className="w-full h-full">
-                  <img src={ObjectItem2} className="w-full h-full" />
-                </SwiperSlide>
-                <SwiperSlide className="w-full h-full">
-                  <img src={ObjectItem2} className="w-full h-full" />
-                </SwiperSlide>
-                <SwiperSlide className="w-full h-full">
-                  <img src={ObjectItem2} className="w-full h-full" />
-                </SwiperSlide>
-                <SwiperSlide className="w-full h-full">
-                  <img src={ObjectItem2} className="w-full h-full" />
-                </SwiperSlide>
-              </Swiper>
-              <Button
-                ref={prevButtonRef}
-                className="absolute object-prev-button z-50 top-[50%] left-2"
-                variant={"outline"}
-              >
-                <ChevronLeft />
-              </Button>
-              <Button
-                ref={nextButtonRef}
-                variant={"outline"}
-                className="absolute object-next-button z-50 top-[50%] right-2 "
-              >
-                <ChevronRight />
-              </Button>
-            </div>
+          <div className="grid grid-cols-1">
             <div className="bg-white p-4 flex flex-col gap-4 text-[13px]">
               <div>
                 <Badge>
@@ -552,8 +515,8 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="max-w-[1629px] p-0 rounded-none overflow-hidden border-0 shadow-none">
-        <div className="grid grid-cols-1  lg:grid-cols-[730px_1fr]">
+      <DialogContent className="max-w-full w-full xl:max-w-[1629px] p-0 rounded-none  border-0 shadow-none overflow-y-auto h-full xl:h-auto">
+        <div className="grid grid-cols-1  xl:grid-cols-[730px_1fr]">
           <div className="h-full w-full relative">
             <Swiper
               navigation={{
@@ -633,7 +596,7 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                 </Badge>
               </div>
             </div>
-            <div className="flex justify-between flex-wrap">
+            <div className="flex justify-between flex-wrap gap-2">
               <div className="flex gap-2 items-center flex-wrap">
                 <div className="flex items-center gap-1 flex-wrap">
                   <p className="text-destructive font-medium">Апартаменты</p>
@@ -666,8 +629,8 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                 <Button variant={"secondary"}>2025</Button>
               </div>
             </div>
-            <div className="grid grid-cols-[160px_1fr] gap-2 items-center">
-              <div className="h-full w-full flex flex-col gap-2">
+            <div className="flex  gap-2 items-center">
+              <div className="h-full flex flex-col gap-2 max-w-[160px]">
                 <img
                   src={ObjectItemImage}
                   className="w-full h-full object-cover"
