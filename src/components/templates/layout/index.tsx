@@ -24,7 +24,9 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         <Sidebar collapsed={collapsed} onToggle={onToggle} />
         <div className="h-full flex flex-col  ">
           <Header />
-          <main className="p-8 h-full overflow-y-auto flex-1">{children}</main>
+          <main className="md:p-8 h-full overflow-y-auto flex-1">
+            {children}
+          </main>
         </div>
       </div>
     </div>

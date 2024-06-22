@@ -27,7 +27,7 @@ import { Drawer } from "vaul";
 
 export const DirectoryPage = () => {
   const isMobile = useMedia("(max-width: 768px)");
-  const [snap, setSnap] = useState<number | string | null>("200px");
+  const [snap, setSnap] = useState<number | string | null>("160px");
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
@@ -144,7 +144,7 @@ export const DirectoryPage = () => {
       )}
       {isMobile && (
         <Drawer.Root
-          snapPoints={["200px", 0.5, 1]}
+          snapPoints={["160px", 1]}
           activeSnapPoint={snap}
           fadeFromIndex={1}
           open={open}
@@ -152,7 +152,7 @@ export const DirectoryPage = () => {
             if (snapPoint) {
               setSnap(snapPoint);
             } else {
-              setSnap("200px");
+              setSnap("160px");
             }
           }}
           onOpenChange={setOpen}
@@ -166,7 +166,7 @@ export const DirectoryPage = () => {
               <div className="mx-auto mt-4 h-8 w-[100px] rounded-full bg-muted" />
               <div
                 className={cn(
-                  "grid gap-1.5 p-4 text-center sm:text-left h-[150px]"
+                  "grid gap-1.5 p-4 text-center sm:text-left h-[100px]"
                 )}
               >
                 <div className="flex gap-2">

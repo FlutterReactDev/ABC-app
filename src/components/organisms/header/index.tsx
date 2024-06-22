@@ -10,7 +10,7 @@ const user = {
 
 export const Header = () => {
   return (
-    <header className="border-b bg-white flex items-center px-14 justify-end py-2 ">
+    <header className="border-b bg-white flex items-center px-7 md:px-14 justify-end h-[60px] pointer-events-auto">
       <AvatarDropdown user={user} />
     </header>
   );
