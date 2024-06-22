@@ -17,14 +17,14 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
     <div className="h-dvh bg-[#F8FAFB]">
       <div
         className={cn(
-          "grid grid-cols-1 md:grid-cols-[280px_minmax(0px,1fr)] h-full transition-all grid-rows-1",
-          collapsed && "md:grid-cols-[74px_minmax(0px,1fr)]"
+          "grid grid-cols-1 lg:grid-cols-[280px_minmax(0px,1fr)] h-full transition-all grid-rows-1",
+          collapsed && "lg:grid-cols-[74px_minmax(0px,1fr)]"
         )}
       >
         <Sidebar collapsed={collapsed} onToggle={onToggle} />
         <div className="h-full flex flex-col  ">
           <Header />
-          <main className="md:p-8 h-full overflow-y-auto flex-1">
+          <main className="lg:p-8 h-full overflow-y-auto flex-1">
             {children}
           </main>
         </div>
