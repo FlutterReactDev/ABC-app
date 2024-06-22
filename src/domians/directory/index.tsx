@@ -26,7 +26,7 @@ import { useMedia } from "react-use";
 import { Drawer } from "vaul";
 
 export const DirectoryPage = () => {
-  const isMobile = useMedia("(max-width: 768px)");
+  const isMobile = useMedia("(max-width: 900px)");
   const [snap, setSnap] = useState<number | string | null>("90px");
   const [open, setOpen] = useState(true);
 
@@ -187,7 +187,7 @@ export const DirectoryPage = () => {
                 </div>
               </div>
               <div
-                className={cn("flex flex-col w-full p-4 pt-5 bg-muted", {
+                className={cn("flex flex-col w-full p-4 pt-5 bg-muted gap-4", {
                   "overflow-y-auto": snap === 1,
                   "overflow-hidden": snap !== 1,
                 })}

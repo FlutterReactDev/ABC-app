@@ -79,7 +79,7 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
         }}
       >
         <SheetTrigger asChild>
-          <div className="bg-white p-4 flex flex-col gap-4 text-[13px] cursor-pointer">
+          <div className="bg-white p-4 flex flex-col gap-4 text-[13px] cursor-pointer rounded-sm">
             <div>
               <Badge>
                 <ArrowUp />
@@ -88,15 +88,15 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
               </Badge>
             </div>
 
-            <div className="flex justify-between items-center flex-wrap">
-              <div className="flex gap-2 items-center">
+            <div className="flex justify-between items-center flex-wrap gap-2">
+              <div className="flex gap-2 items-center flex-wrap">
                 <Avatar className="h-14 w-14">
                   <AvatarFallback>ЖК Ромашка</AvatarFallback>
                   <AvatarImage src={ObjectImage} />
                 </Avatar>
                 <div className="flex flex-col gap-0">
                   <h1 className="text-sm font-medium">ЖК Ромашка</h1>
-                  <div className="flex gap-1 text-foreground/80 text-xs items-center">
+                  <div className="flex gap-1 text-foreground/80 text-xs items-center flex-wrap">
                     <p>СВАО / Реутов /</p>
                     <div className="flex gap-1 items-center">
                       <p>Сокол</p>
@@ -154,7 +154,7 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                 <Button variant={"secondary"}>2025</Button>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-2 items-center">
+            <div className="flex flex-col gap-2 items-center">
               <div className="h-full w-full flex flex-col gap-2">
                 <img
                   src={ObjectItemImage}
