@@ -27,7 +27,7 @@ import { Drawer } from "vaul";
 
 export const DirectoryPage = () => {
   const isMobile = useMedia("(max-width: 768px)");
-  const [snap, setSnap] = useState<number | string | null>("108px");
+  const [snap, setSnap] = useState<number | string | null>("90px");
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
@@ -104,20 +104,20 @@ export const DirectoryPage = () => {
       {!isMobile && (
         <div className="mt-4 grid grid-cols-[840px_1fr] gap-2">
           <div className="flex flex-col gap-2">
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
-            <Object />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
+            <Object modalOpen />
           </div>
-          <div className="flex h-dvh w-full  rounded-lg sticky top-0">
+          <div className="flex h-dvh w-full  rounded-lg sticky top-[-35px]">
             <Map2GIS
               initialMapOptions={{
                 center: [74.603605, 42.876452],
@@ -139,7 +139,7 @@ export const DirectoryPage = () => {
       )}
       {isMobile && open && (
         <Drawer.Root
-          snapPoints={["108px", 1]}
+          snapPoints={["90px", 1]}
           activeSnapPoint={snap}
           open={open}
           setActiveSnapPoint={(snapPoint) => {
@@ -147,7 +147,7 @@ export const DirectoryPage = () => {
               setSnap(snapPoint);
             } else {
               setOpen(false);
-              setSnap("108px");
+              setSnap("90px");
             }
           }}
         >
@@ -187,7 +187,7 @@ export const DirectoryPage = () => {
                 </div>
               </div>
               <div
-                className={cn("flex flex-col w-full p-4 pt-5", {
+                className={cn("flex flex-col w-full p-4 pt-5 bg-muted", {
                   "overflow-y-auto": snap === 1,
                   "overflow-hidden": snap !== 1,
                 })}

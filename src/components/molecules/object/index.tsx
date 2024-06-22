@@ -20,18 +20,32 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import ObjectItem2 from "@/assets/object-item-2.png";
-import { MutableRefObject, useRef } from "react";
+import { FC, MutableRefObject, useRef, useState } from "react";
 import { useMedia } from "react-use";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-export const Object = () => {
+
+interface ObjectProps {
+  modalOpen?: boolean;
+}
+export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
   const nextButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const prevButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
   const isMobile = useMedia("(max-width: 1200px)");
+  const [open, setOpen] = useState(false);
 
   if (isMobile) {
     return (
-      <Sheet>
+      <Sheet
+        open={open}
+        onOpenChange={(value) => {
+          if (modalOpen) {
+            setOpen(value);
+          } else {
+            setOpen(false);
+          }
+        }}
+      >
         <SheetTrigger asChild>
           <div className="bg-white p-4 flex flex-col gap-4 text-[13px] cursor-pointer">
             <div>
@@ -42,7 +56,7 @@ export const Object = () => {
               </Badge>
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center flex-wrap">
               <div className="flex gap-2 items-center">
                 <Avatar className="h-14 w-14">
                   <AvatarFallback>ЖК Ромашка</AvatarFallback>
@@ -75,8 +89,8 @@ export const Object = () => {
                 </Badge>
               </div>
             </div>
-            <div className="flex justify-between">
-              <div className="flex gap-2 items-center">
+            <div className="flex justify-between flex-wrap gap-2">
+              <div className="flex gap-2 items-center flex-wrap">
                 <div className="flex items-center gap-1">
                   <p className="text-destructive font-medium">Апартаменты</p>
                   <CircleAlert className="text-foreground/50 w-4 h-4" />
@@ -108,7 +122,7 @@ export const Object = () => {
                 <Button variant={"secondary"}>2025</Button>
               </div>
             </div>
-            <div className="grid grid-cols-[160px_1fr] gap-2 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-2 items-center">
               <div className="h-full w-full flex flex-col gap-2">
                 <img
                   src={ObjectItemImage}
@@ -151,7 +165,7 @@ export const Object = () => {
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-2">
                 <h3 className="font-medium text-sm">Особенности</h3>
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                   <Button variant={"secondary"}>Река</Button>
                   <Button variant={"secondary"}>Пруд</Button>
                   <Button variant={"secondary"}>Лесопарк</Button>
@@ -377,7 +391,16 @@ export const Object = () => {
     );
   }
   return (
-    <Dialog>
+    <Dialog
+      open={open}
+      onOpenChange={(value) => {
+        if (modalOpen) {
+          setOpen(value);
+        } else {
+          setOpen(false);
+        }
+      }}
+    >
       <DialogTrigger asChild>
         <div className="bg-white p-4 flex flex-col gap-4 text-[13px] cursor-pointer">
           <div>
