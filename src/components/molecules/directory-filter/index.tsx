@@ -40,14 +40,14 @@ export const DirectoryFilter = () => {
         <div className="flex flex-col gap-3 ">
           <Label>Цена</Label>
           <div className="flex gap-2 ">
-            <CurrencyInput placeholder="от" className="max-w-36 w-full" />
-            <CurrencyInput placeholder="до" className="max-w-36 w-full" />
+            <CurrencyInput placeholder="от" className="md:max-w-36 w-full" />
+            <CurrencyInput placeholder="до" className="md:max-w-36 w-full" />
           </div>
           <div className="flex flex-col gap-3 ">
             <Label>Площадь</Label>
             <div className="flex gap-2">
-              <Input placeholder="от" className="max-w-36 w-full" />
-              <Input placeholder="до" className="max-w-36 w-full" />
+              <Input placeholder="от" className="md:max-w-36 w-full" />
+              <Input placeholder="до" className="md:max-w-36 w-full" />
             </div>
           </div>
           <div className="flex gap-1">
@@ -122,7 +122,7 @@ export const DirectoryFilter = () => {
             </Button>
           </div>
         </div>
-        <div className="flex flex-col gap-3 max-w-56 w-full">
+        <div className="flex flex-col gap-3 md:max-w-56 w-full">
           <Label>Срок сдачи</Label>
           <DeadlineSelect onChange={() => {}} />
           <Label>Отделка</Label>

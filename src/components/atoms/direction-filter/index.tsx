@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 export const DirectionFilter = () => {
   return (
     <>
-      <div className="flex gap-1">
+      <div className="flex gap-1 ">
         <Checkbox id="center" />
         <label
           htmlFor="center"
@@ -13,7 +13,7 @@ export const DirectionFilter = () => {
           Центр
         </label>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap items-center">
         <div className="flex gap-1">
           <Checkbox id="north" />
           <label
@@ -23,7 +23,7 @@ export const DirectionFilter = () => {
             Север
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5" />
         <div className="flex gap-1">
           <Checkbox id="northeast" />
           <label
@@ -33,7 +33,7 @@ export const DirectionFilter = () => {
             Северо-Восток
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5" />
         <div className="flex gap-1">
           <Checkbox id="northwest" />
           <label
@@ -44,7 +44,7 @@ export const DirectionFilter = () => {
           </label>
         </div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap items-center">
         <div className="flex gap-1">
           <Checkbox id="north" />
           <label
@@ -54,8 +54,8 @@ export const DirectionFilter = () => {
             Север
           </label>
         </div>
-        <Separator orientation="vertical" />
-        <div className="flex gap-1">
+        <Separator orientation="vertical" className="h-5" />
+        <div className="flex gap-1 ">
           <Checkbox id="northeast" />
           <label
             htmlFor="northeast"
@@ -64,7 +64,7 @@ export const DirectionFilter = () => {
             Северо-Восток
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5" />
         <div className="flex gap-1">
           <Checkbox id="northwest" />
           <label
@@ -75,8 +75,8 @@ export const DirectionFilter = () => {
           </label>
         </div>
       </div>
-      <div className="flex gap-2">
-        <div className="flex gap-1">
+      <div className="flex gap-2 flex-wrap items-center">
+        <div className="flex gap-1 ">
           <Checkbox id="north" />
           <label
             htmlFor="north"
@@ -85,7 +85,7 @@ export const DirectionFilter = () => {
             Север
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5" />
         <div className="flex gap-1">
           <Checkbox id="northeast" />
           <label
@@ -95,7 +95,7 @@ export const DirectionFilter = () => {
             Северо-Восток
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5" />
         <div className="flex gap-1">
           <Checkbox id="northwest" />
           <label
@@ -106,7 +106,7 @@ export const DirectionFilter = () => {
           </label>
         </div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap items-center">
         <div className="flex gap-1">
           <Checkbox id="north" />
           <label
@@ -116,7 +116,7 @@ export const DirectionFilter = () => {
             Север
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5"/>
         <div className="flex gap-1">
           <Checkbox id="northeast" />
           <label
@@ -126,7 +126,7 @@ export const DirectionFilter = () => {
             Северо-Восток
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5"/>
         <div className="flex gap-1">
           <Checkbox id="northwest" />
           <label
@@ -137,7 +137,7 @@ export const DirectionFilter = () => {
           </label>
         </div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap items-center">
         <div className="flex gap-1">
           <Checkbox id="north" />
           <label
@@ -147,7 +147,7 @@ export const DirectionFilter = () => {
             Север
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5" />
         <div className="flex gap-1">
           <Checkbox id="northeast" />
           <label
@@ -157,7 +157,7 @@ export const DirectionFilter = () => {
             Северо-Восток
           </label>
         </div>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-5" />
         <div className="flex gap-1">
           <Checkbox id="northwest" />
           <label

@@ -117,7 +117,12 @@ export const DirectoryPage = () => {
             <Object />
             <Object />
           </div>
-          <div className="flex h-dvh w-full  rounded-lg sticky top-0">
+          <div
+            style={{
+              height: "calc(100dvh - 60px)",
+            }}
+            className="flex  w-full  rounded-lg sticky top-[-40px]"
+          >
             <Map2GIS
               initialMapOptions={{
                 center: [74.603605, 42.876452],
@@ -175,7 +180,7 @@ export const DirectoryPage = () => {
                         <Menu />
                       </Button>
                     </SheetTrigger>
-                    <SheetContent className="sm:max-w-full overflow-y-auto">
+                    <SheetContent className="sm:max-w-full overflow-y-auto max-w-full w-full">
                       <SheetHeader>
                         <SheetTitle>Фильтр</SheetTitle>
                       </SheetHeader>

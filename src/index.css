@@ -35,6 +35,15 @@
 }
 
 @layer base {
+  * {
+
+  }
+  body {
+    @apply bg-muted text-foreground overflow-hidden;
+  }
+}
+
+@layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 209, 90%, 8%;
