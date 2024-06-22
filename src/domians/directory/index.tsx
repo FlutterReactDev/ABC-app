@@ -27,13 +27,13 @@ import { Drawer } from "vaul";
 
 export const DirectoryPage = () => {
   const isMobile = useMedia("(max-width: 768px)");
-  const [snap, setSnap] = useState<number | string | null>("160px");
+  const [snap, setSnap] = useState<number | string | null>("108px");
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
     if (!open) {
       setOpen(true);
-      setSnap("160px");
+      setSnap("200px");
     }
   }, [open]);
   return (
@@ -117,12 +117,7 @@ export const DirectoryPage = () => {
             <Object />
             <Object />
           </div>
-          <div
-            style={{
-              height: "calc(100dvh - 60px)",
-            }}
-            className="flex  w-full  rounded-lg sticky top-[-40px]"
-          >
+          <div className="flex h-dvh w-full  rounded-lg sticky top-0">
             <Map2GIS
               initialMapOptions={{
                 center: [74.603605, 42.876452],
@@ -142,40 +137,35 @@ export const DirectoryPage = () => {
           className="w-full h-full rounded-lg overflow-hidden z-50 pointer-events-auto"
         />
       )}
-      {isMobile && (
+      {isMobile && open && (
         <Drawer.Root
-          snapPoints={["160px", 1]}
+          snapPoints={["108px", 1]}
           activeSnapPoint={snap}
-          fadeFromIndex={1}
           open={open}
           setActiveSnapPoint={(snapPoint) => {
             if (snapPoint) {
               setSnap(snapPoint);
             } else {
-              setSnap("160px");
+              setSnap("108px");
             }
           }}
-          onOpenChange={setOpen}
         >
           {snap == 1 && (
             <Drawer.Overlay className="fixed inset-0 z-50 bg-black/80" />
           )}
 
           <Drawer.Portal>
-            <Drawer.Content className="bg-white flex z-50 flex-col fixed bottom-0 left-0 right-0 max-h-[90%] rounded-t-[10px]">
+            <Drawer.Content className="bg-white flex z-50 flex-col fixed bottom-0 left-0 right-0 max-h-[100%] rounded-t-[10px]">
               <div className="mx-auto mt-4 h-8 w-[100px] rounded-full bg-muted" />
               <div
                 className={cn(
-                  "grid gap-1.5 p-4 text-center sm:text-left h-[60px]"
+                  "grid gap-1.5 p-4 text-center sm:text-left h-[150px]"
                 )}
               >
                 <div className="flex gap-2">
                   <Input
                     placeholder="Поиск по Названию ЖК, застройщика, округам, районам, метро"
                     className="flex-1 h-10"
-                    onFocus={() => {
-                      setSnap(1);
-                    }}
                   />
                   <Sheet>
                     <SheetTrigger asChild>
@@ -183,7 +173,7 @@ export const DirectoryPage = () => {
                         <Menu />
                       </Button>
                     </SheetTrigger>
-                    <SheetContent className="sm:max-w-full overflow-y-auto max-w-full w-full">
+                    <SheetContent className="sm:max-w-full overflow-y-auto">
                       <SheetHeader>
                         <SheetTitle>Фильтр</SheetTitle>
                       </SheetHeader>
@@ -194,7 +184,7 @@ export const DirectoryPage = () => {
               </div>
               <div
                 className={cn("flex flex-col w-full p-4 pt-5", {
-                  "overflow-auto": snap === 1,
+                  "overflow-y-auto": snap === 1,
                   "overflow-hidden": snap !== 1,
                 })}
               >
