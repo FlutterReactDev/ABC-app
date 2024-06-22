@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { FC, PropsWithChildren, useState } from "react";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   const onToggle = () => {
     if (collapsed) {
