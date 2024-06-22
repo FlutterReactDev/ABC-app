@@ -146,6 +146,7 @@ export const DirectoryPage = () => {
             if (snapPoint) {
               setSnap(snapPoint);
             } else {
+              setOpen(false);
               setSnap("108px");
             }
           }}
