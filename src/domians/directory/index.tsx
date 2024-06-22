@@ -166,6 +166,9 @@ export const DirectoryPage = () => {
                   <Input
                     placeholder="Поиск по Названию ЖК, застройщика, округам, районам, метро"
                     className="flex-1 h-10"
+                    onFocus={() => {
+                      setSnap(1);
+                    }}
                   />
                   <Sheet>
                     <SheetTrigger asChild>
@@ -173,7 +176,7 @@ export const DirectoryPage = () => {
                         <Menu />
                       </Button>
                     </SheetTrigger>
-                    <SheetContent className="sm:max-w-full overflow-y-auto">
+                    <SheetContent className="sm:max-w-full overflow-y-auto max-w-full w-full">
                       <SheetHeader>
                         <SheetTitle>Фильтр</SheetTitle>
                       </SheetHeader>
