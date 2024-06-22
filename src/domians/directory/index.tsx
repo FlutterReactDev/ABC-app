@@ -159,7 +159,7 @@ export const DirectoryPage = () => {
               <div className="mx-auto mt-4 h-8 w-[100px] rounded-full bg-muted" />
               <div
                 className={cn(
-                  "grid gap-1.5 p-4 text-center sm:text-left h-[150px]"
+                  "grid gap-1.5 p-4 text-center sm:text-left h-[70px]"
                 )}
               >
                 <div className="flex gap-2">
