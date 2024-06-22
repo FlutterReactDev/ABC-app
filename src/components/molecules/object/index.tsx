@@ -167,7 +167,7 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                   <CirclePlay className="w-4 h-4" /> Видео презентация
                 </Button>
               </div>
-              <ScrollArea className="w-full whitespace-nowrap ">
+              <ScrollArea className="w-full whitespace-nowrap" type="always">
                 <div className="min-w-[820px]">
                   <GridTable cols={6}>
                     <GridTableItem></GridTableItem>
@@ -751,6 +751,33 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
             </div>
           </DialogContent>
         </Dialog>
+
+        <GridTable cols={6}>
+          <GridTableItem></GridTableItem>
+          <GridTableItem>Ст</GridTableItem>
+          <GridTableItem>1кк</GridTableItem>
+          <GridTableItem>2кк</GridTableItem>
+          <GridTableItem>3кк</GridTableItem>
+          <GridTableItem>4кк</GridTableItem>
+          <GridTableItem>Без отделки</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem></GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>Предчистовая</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem></GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>Чистовая</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem></GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+          <GridTableItem>12,2 млн - 50м²</GridTableItem>
+        </GridTable>
       </div>
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-2">
