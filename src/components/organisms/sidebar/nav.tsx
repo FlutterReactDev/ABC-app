@@ -22,7 +22,7 @@ export const Nav: FC<NavProps> = (props) => {
   const { links, collapsed } = props;
   return (
     <div className="group flex flex-col gap-4 py-2 w-full">
-      <nav className="grid gap-2 w-full">
+      <nav className="grid gap-2 w-full items-center">
         {collapsed &&
           links.map((link, index) => (
             <Tooltip key={index}>

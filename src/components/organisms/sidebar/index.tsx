@@ -1,7 +1,7 @@
 import { Category1, Category2 } from "@/assets/icons";
 import { Logo } from "@/components/atoms/logo";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Settings } from "lucide-react";
 import { FC } from "react";
 import { Nav } from "./nav";
 interface SidebarProps {
@@ -26,13 +26,18 @@ export const Sidebar: FC<SidebarProps> = (props) => {
           links={[
             {
               title: "Справочник",
-              icon: (props) => <Category2 color={props.color} />,
+              icon: (props) => <Category2 className="w-5 h-5" color={props.color} />,
               to: "/a/directory",
             },
             {
               title: "Подбор ЖК",
-              icon: (props) => <Category1 color={props.color} />,
+              icon: (props) => <Category1 className="w-5 h-5" color={props.color} />,
               to: "/a/selection",
+            },
+            {
+              title: "Настройки",
+              icon: (props) => <Settings className="w-5 h-5" color={props.color} />,
+              to: "/a/settings",
             },
           ]}
         />
