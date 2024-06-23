@@ -14,6 +14,7 @@ interface NavProps {
     title: string;
     icon: (props: { color: string }) => ReactNode;
     to: string;
+    onClick?: () => void;
   }[];
   collapsed: boolean;
 }
@@ -27,7 +28,15 @@ export const Nav: FC<NavProps> = (props) => {
           links.map((link, index) => (
             <Tooltip key={index}>
               <TooltipTrigger>
-                <Link to={link.to} className="w-full">
+                <Link
+                  to={link.to}
+                  className="w-full"
+                  onClick={() => {
+                    if (link.onClick) {
+                      link.onClick();
+                    }
+                  }}
+                >
                   {({ isActive }) => {
                     return (
                       <div
@@ -51,7 +60,16 @@ export const Nav: FC<NavProps> = (props) => {
           ))}
         {!collapsed &&
           links.map((link, index) => (
-            <Link key={index} to={link.to} className="w-full">
+            <Link
+              key={index}
+              to={link.to}
+              className="w-full"
+              onClick={() => {
+                if (link.onClick) {
+                  link.onClick();
+                }
+              }}
+            >
               {({ isActive }) => {
                 return (
                   <div

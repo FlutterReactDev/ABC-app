@@ -10,6 +10,7 @@ import {
 import { Menu, Settings } from "lucide-react";
 import { Nav } from "../sidebar/nav";
 import { Category1, Category2 } from "@/assets/icons";
+import { useState } from "react";
 
 const user = {
   name: "Егор Соколов",
@@ -20,10 +21,11 @@ const user = {
 };
 
 export const Header = () => {
+  const [open, setOpen] = useState(false);
   return (
     <header className="border-b bg-white flex items-center px-5 gap-4 md:px-14 justify-end h-[60px] pointer-events-auto">
       <AvatarDropdown user={user} />
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button
             variant={"secondary"}
@@ -51,6 +53,7 @@ export const Header = () => {
                   <Category2 className="w-5 h-5" color={props.color} />
                 ),
                 to: "/a/directory",
+                onClick: () => setOpen(false),
               },
               {
                 title: "Подбор ЖК",
@@ -58,6 +61,7 @@ export const Header = () => {
                   <Category1 className="w-5 h-5" color={props.color} />
                 ),
                 to: "/a/selection",
+                onClick: () => setOpen(false),
               },
               {
                 title: "Настройки",
@@ -65,6 +69,7 @@ export const Header = () => {
                   <Settings className="w-5 h-5" color={props.color} />
                 ),
                 to: "/a/settings",
+                onClick: () => setOpen(false),
               },
             ]}
           />
