@@ -45,6 +45,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+
+import {
+  TooltipTrigger,
+  TooltipContent,
+  Tooltip,
+} from "@/components/ui/tooltip";
 interface ObjectProps {
   modalOpen?: boolean;
 }
@@ -392,7 +398,7 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
     );
   }
   return (
-    <div className="bg-white p-4 flex flex-col gap-4 text-[13px] cursor-pointer relative">
+    <div className="bg-white p-4 flex flex-col gap-4 text-[13px]  relative">
       <div>
         <Badge>
           <ArrowUp />
@@ -501,7 +507,15 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
         <div className="flex gap-2 items-center">
           <div className="flex items-center gap-1">
             <p className="text-destructive font-medium">Апартаменты</p>
-            <CircleAlert className="text-foreground/50 w-4 h-4" />
+            <Tooltip>
+              <TooltipTrigger>
+                <CircleAlert className="text-foreground/50 w-4 h-4" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-52 text-center">
+                Только домены 2 или 3 уровня: site.ru или moscow.ru, без
+                возможности выбора страницы или раздела
+              </TooltipContent>
+            </Tooltip>
           </div>
           <Separator orientation="vertical" className="h-4" />
           <div className="flex items-center gap-2">
