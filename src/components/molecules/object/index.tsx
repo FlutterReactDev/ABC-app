@@ -497,7 +497,19 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
           </div>
         </div>
         <div className="flex gap-2">
-          <Badge className="text-[11px]">Старт продаж</Badge>
+          <Tooltip>
+            <TooltipTrigger>
+              <Badge className="text-[11px]">Старт продаж</Badge>
+            </TooltipTrigger>
+            <TooltipContent className="w-64 pl-5">
+              <h1 className="text-foreground/70 font-medium text-sm">Акции</h1>
+              <ul className="text-foreground/50 text-xs list-disc">
+                <li>Ипотека 11,5% на весь срок</li>
+                <li>Семейная ипотека 3,9% на весь срок</li>
+              </ul>
+            </TooltipContent>
+          </Tooltip>
+
           <Badge variant={"destructive"} className="gap-1 text-[11px]">
             <CircleAlert className="w-3 h-3" /> Старт продаж
           </Badge>
