@@ -102,7 +102,7 @@ export const DirectoryPage = () => {
       )}
 
       {!isMobile && (
-        <div className="mt-4 grid grid-cols-[840px_1fr] gap-2">
+        <div className="mt-4 grid grid-cols-[840px_minmax(0px,1fr)] gap-2">
           <div className="flex flex-col gap-2">
             <Object modalOpen />
             <Object modalOpen />
