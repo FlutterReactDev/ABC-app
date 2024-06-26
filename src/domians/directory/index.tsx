@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
-import { ChevronDown, ChevronLeft, Menu } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { Drawer } from "vaul";
@@ -29,6 +29,7 @@ export const DirectoryPage = () => {
   const isMobile = useMedia("(max-width: 900px)");
   const [snap, setSnap] = useState<number | string | null>("90px");
   const [open, setOpen] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     if (!open) {
@@ -36,16 +37,33 @@ export const DirectoryPage = () => {
       setSnap("200px");
     }
   }, [open]);
+
+  const onToggleCollapse = () => {
+    if (collapsed) {
+      setCollapsed(false);
+    } else {
+      setCollapsed(true);
+    }
+  };
+
   return (
     <div className="w-full h-full">
       {!isMobile && <DirectoryFilter />}
       {!isMobile && (
         <div className="flex flex-col gap-4 mt-4">
           <div className="flex justify-between">
-            <Button>
-              <ChevronLeft className="w-4 h-4" />
-              Свернуть
-            </Button>
+            {collapsed ? (
+              <Button onClick={onToggleCollapse} className="sticky top-0">
+                <ChevronRight className="w-4 h-4" />
+                Развернуть
+              </Button>
+            ) : (
+              <Button onClick={onToggleCollapse}>
+                <ChevronLeft className="w-4 h-4" />
+                Свернуть
+              </Button>
+            )}
+
             <div className="flex gap-1 items-center">
               <div className="text-sm">Сортировка:</div>
               <Popover>
@@ -55,7 +73,7 @@ export const DirectoryPage = () => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent
-                  className="max-w-52 flex flex-col gap-2 justify-start"
+                  className=" flex flex-col gap-2 justify-start"
                   align="end"
                 >
                   <Button variant={"ghost"} className="justify-start">
@@ -102,8 +120,13 @@ export const DirectoryPage = () => {
       )}
 
       {!isMobile && (
-        <div className="mt-4 grid grid-cols-[840px_minmax(0px,1fr)] gap-2">
-          <div className="flex flex-col gap-2">
+        <div
+          className={cn(
+            "mt-4 grid grid-cols-[minmax(0px,840px)_minmax(300px,1fr)] gap-2",
+            collapsed && "grid-cols-1"
+          )}
+        >
+          <div className={cn("flex flex-col gap-2", collapsed && "hidden")}>
             <Object modalOpen />
             <Object modalOpen />
             <Object modalOpen />
