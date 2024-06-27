@@ -161,7 +161,10 @@ export const DirectoryPage = () => {
             zoom: 15,
           }}
           className="w-full h-full rounded-lg overflow-hidden z-50 pointer-events-auto"
-        />
+        >
+          <ObjectMarker coordinates={[74.604923, 42.847277]} />
+          <ObjectMarker coordinates={[74.620365, 42.852053]} />
+        </Map2GIS>
       )}
       {isMobile && open && (
         <Drawer.Root
