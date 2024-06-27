@@ -155,9 +155,13 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                 </div>
               </div>
               <div className="flex gap-1">
-                <Button>Сдан</Button>
-                <Button variant={"secondary"}>2024</Button>
-                <Button variant={"secondary"}>2025</Button>
+                <Button className="text-sm">Сдан</Button>
+                <Button variant={"secondary"} className="text-sm">
+                  2024
+                </Button>
+                <Button variant={"secondary"} className="text-sm">
+                  2025
+                </Button>
               </div>
             </div>
             <div className="flex flex-col gap-2 items-center">
@@ -398,7 +402,7 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
     );
   }
   return (
-    <div className="bg-white p-4 flex flex-col gap-4 text-[13px]  relative">
+    <div className="bg-white p-4 flex flex-col gap-4 text-[13px]  relative text-xs">
       <div>
         <Badge>
           <ArrowUp />
@@ -551,9 +555,13 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
           </div>
         </div>
         <div className="flex gap-1">
-          <Button>Сдан</Button>
-          <Button variant={"secondary"}>2024</Button>
-          <Button variant={"secondary"}>2025</Button>
+          <Button className="text-xs">Сдан</Button>
+          <Button variant={"secondary"} className="text-xs">
+            2024
+          </Button>
+          <Button variant={"secondary"} className="text-xs">
+            2025
+          </Button>
         </div>
       </div>
       <div className="grid grid-cols-[160px_1fr] gap-2 items-center">
@@ -695,9 +703,13 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                     </div>
                   </div>
                   <div className="flex gap-1 flex-wrap">
-                    <Button>Сдан</Button>
-                    <Button variant={"secondary"}>2024</Button>
-                    <Button variant={"secondary"}>2025</Button>
+                    <Button className="text-sm">Сдан</Button>
+                    <Button variant={"secondary"} className="text-sm">
+                      2024
+                    </Button>
+                    <Button variant={"secondary"} className="text-sm">
+                      2025
+                    </Button>
                   </div>
                 </div>
                 <div className="flex  gap-2 items-center">

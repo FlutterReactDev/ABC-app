@@ -7,8 +7,23 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+
+import { Object } from "@/components/molecules/object";
 export const SectionPage = () => {
+  const [type, setType] = useState<"list" | "map">("list");
+
+  const onChangeType = (type: "list" | "map") => {
+    if (type == "list") {
+      setType("list");
+    }
+
+    if (type == "map") {
+      setType("map");
+    }
+  };
   return (
     <div className="w-full h-full">
       <div className="grid grid-cols-2 gap-5 h-full">
@@ -57,21 +72,56 @@ export const SectionPage = () => {
             </div>
 
             <div className="flex gap-2">
-              <Button variant={"secondary"}>Листинг</Button>
-              <Button>Карта</Button>
+              <Button
+                variant="secondary"
+                {...(type == "list" && {
+                  variant: "default",
+                })}
+                onClick={() => onChangeType("list")}
+              >
+                Листинг
+              </Button>
+              <Button
+                variant="secondary"
+                {...(type == "map" && {
+                  variant: "default",
+                })}
+                onClick={() => onChangeType("map")}
+              >
+                Карта
+              </Button>
             </div>
           </div>
           <div className="flex-1">
-            <Map2GIS
-              initialMapOptions={{
-                center: [74.603605, 42.876452],
-                zoom: 15,
-              }}
-              className="w-full h-full rounded-lg overflow-hidden"
-            >
-              <ObjectMarker coordinates={[74.604923, 42.847277]} />
-              <ObjectMarker coordinates={[74.620365, 42.852053]} />
-            </Map2GIS>
+            {type == "map" && (
+              <Map2GIS
+                initialMapOptions={{
+                  center: [74.603605, 42.876452],
+                  zoom: 15,
+                }}
+                className="w-full h-full rounded-lg overflow-hidden"
+              >
+                <ObjectMarker coordinates={[74.604923, 42.847277]} />
+                <ObjectMarker coordinates={[74.620365, 42.852053]} />
+              </Map2GIS>
+            )}
+
+            {type == "list" && (
+              <div className={cn("flex flex-col gap-2")}>
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+                <Object modalOpen />
+              </div>
+            )}
           </div>
         </div>
       </div>
