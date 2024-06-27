@@ -17,7 +17,7 @@ import { HtmlMarker2GIS } from "../2GIS";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CircleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -29,10 +29,11 @@ export interface ObjectMarkerProps {
 }
 export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
   const { coordinates } = props;
+  const [open, setOpen] = useState(false);
   return (
     <HtmlMarker2GIS coordinates={coordinates}>
       <div
-        className="relative bg-white rounded p-3.5 flex flex-col gap-3 max-w- w-full text-xs"
+        className="relative bg-white rounded p-3.5 flex flex-col gap-3 max-w-2xl w-full text-xs"
         style={{
           transform: "translate(-51%, -103%)",
         }}
@@ -130,50 +131,53 @@ export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
             </TableRow>
           </TableBody>
         </Table>
-        <Collapsible>
-          <CollapsibleTrigger>
-            <Button
-              variant={"ghost"}
-              className="text-primary hover:text-primary"
-            >
-              Показать детали
-            </Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <div className="flex flex-col gap-3 px-2">
-              <div className="flex flex-col gap-2">
-                <h3 className="font-medium text-sm">Особенности</h3>
-                <div className="flex gap-2 flex-wrap">
-                  <Button variant={"secondary"}>Река</Button>
-                  <Button variant={"secondary"}>Пруд</Button>
-                  <Button variant={"secondary"}>Лесопарк</Button>
-                  <Button variant={"secondary"}>Подземная парковка</Button>
-                  <Button variant={"secondary"}>Чистовая отделка</Button>
+        <Collapsible open={open} onOpenChange={setOpen}>
+          <div className="gap-2">
+            <CollapsibleTrigger>
+              <Button
+                variant={"ghost"}
+                className="text-primary hover:text-primary"
+              >
+                {open && "Скрыть детали"}
+                {!open && "Показать детали"}
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="flex flex-col gap-3 px-2">
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-medium text-sm">Особенности</h3>
+                  <div className="flex gap-2 flex-wrap">
+                    <Button variant={"secondary"}>Река</Button>
+                    <Button variant={"secondary"}>Пруд</Button>
+                    <Button variant={"secondary"}>Лесопарк</Button>
+                    <Button variant={"secondary"}>Подземная парковка</Button>
+                    <Button variant={"secondary"}>Чистовая отделка</Button>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-medium text-sm">Описание</h3>
+                  <p>
+                    В ЖК Прокшино можно найти квартиры с высокими потолками, а
+                    также уникальными планировками. В шаговой доступности есть
+                    все необходимые объекты инфраструктуры, а из окон
+                    открываются живописные вида на реку Сосновку. Комплекс
+                    расположен в непосредственной близости от крупных природных
+                    лесопарков с благоустроенными дорожками для пеших и
+                    велосипедных прогулок и зонами отдыха.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-medium text-sm">Расположение</h3>
+                  <p>
+                    ЖК "Прокшино" расположено всего в 10 минутах ходьбы от ст.м
+                    Прокшино, рядом с багоустроенной набережной. Рядом строится
+                    крупный бизнес-квартал с торговым центром и
+                    спортивно-событийный кластер с горнолыжным склоном.
+                  </p>
                 </div>
               </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="font-medium text-sm">Описание</h3>
-                <p>
-                  В ЖК Прокшино можно найти квартиры с высокими потолками, а
-                  также уникальными планировками. В шаговой доступности есть все
-                  необходимые объекты инфраструктуры, а из окон открываются
-                  живописные вида на реку Сосновку. Комплекс расположен в
-                  непосредственной близости от крупных природных лесопарков с
-                  благоустроенными дорожками для пеших и велосипедных прогулок и
-                  зонами отдыха.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="font-medium text-sm">Расположение</h3>
-                <p>
-                  ЖК "Прокшино" расположено всего в 10 минутах ходьбы от ст.м
-                  Прокшино, рядом с багоустроенной набережной. Рядом строится
-                  крупный бизнес-квартал с торговым центром и
-                  спортивно-событийный кластер с горнолыжным склоном.
-                </p>
-              </div>
-            </div>
-          </CollapsibleContent>
+            </CollapsibleContent>
+          </div>
         </Collapsible>
 
         <div className="absolute h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-white bottom-0 left-[50%] translate-y-[88%] rotate-180" />
