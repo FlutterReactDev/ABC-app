@@ -17,6 +17,7 @@ const Input = memo(
             className
           )}
           ref={ref}
+          autoFocus={false}
           {...props}
         />
       );
