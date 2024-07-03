@@ -11,9 +11,10 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { FC } from "react";
 import { ru } from "date-fns/locale";
+import { SelectSingleEventHandler } from "react-day-picker";
 export interface DatePickerProps {
   value?: Date;
-  onChange: () => void;
+  onChange: SelectSingleEventHandler;
 }
 export const DatePicker: FC<DatePickerProps> = (props) => {
   const { onChange, value } = props;

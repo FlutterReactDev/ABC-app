@@ -24,7 +24,6 @@ import { ChevronDown, ChevronLeft, ChevronRight, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { Drawer } from "vaul";
-import { DatePicker } from "@/components/atoms/date-picker";
 
 export const DirectoryPage = () => {
   const isMobile = useMedia("(max-width: 900px)");

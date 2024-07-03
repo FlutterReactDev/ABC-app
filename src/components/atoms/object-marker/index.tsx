@@ -1,9 +1,11 @@
 import ObjectImage from "@/assets/object-icon.png";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { Separator } from "@/components/ui/separator";
 import {
   Table,
@@ -13,16 +15,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { HtmlMarker2GIS } from "../2GIS";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CircleAlert } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { FC, useState } from "react";
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { CircleAlert } from "lucide-react";
+import { FC, useState } from "react";
+import "swiper/css";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { HtmlMarker2GIS } from "../2GIS";
 
 export interface ObjectMarkerProps {
   coordinates: number[];
@@ -30,6 +32,10 @@ export interface ObjectMarkerProps {
 export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
   const { coordinates } = props;
   const [open, setOpen] = useState(false);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(
+    null
+  );
+  const [activeSlide, setActiveSlide] = useState(0);
   return (
     <HtmlMarker2GIS coordinates={coordinates}>
       <div
@@ -88,49 +94,179 @@ export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
         </div>
 
         <div className="flex gap-1 justify-end ">
-          <Button>Сдан</Button>
-          <Button variant={"secondary"}>2024</Button>
-          <Button variant={"secondary"}>2025</Button>
+          <Button
+            className="text-xs"
+            onClick={() => {
+              setActiveSlide(0);
+              swiperInstance?.slideTo(0);
+            }}
+            variant={"secondary"}
+            {...(activeSlide == 0 && {
+              variant: "default",
+            })}
+          >
+            Сдан
+          </Button>
+          <Button
+            variant={"secondary"}
+            className="text-xs"
+            {...(activeSlide == 1 && {
+              variant: "default",
+            })}
+            onClick={() => {
+              setActiveSlide(1);
+              swiperInstance?.slideTo(1);
+            }}
+          >
+            2024
+          </Button>
+          <Button
+            variant={"secondary"}
+            className="text-xs"
+            {...(activeSlide == 2 && {
+              variant: "default",
+            })}
+            onClick={() => {
+              setActiveSlide(2);
+              swiperInstance?.slideTo(2);
+            }}
+          >
+            2025
+          </Button>
         </div>
+        <Swiper
+          className="w-full h-full"
+          onSwiper={(swiper) => {
+            setSwiperInstance(swiper);
+          }}
+          spaceBetween={10}
+          slidesPerView={"auto"}
+          freeMode={true}
+        >
+          <SwiperSlide className="w-full h-full">
+            <Table className="text-xs">
+              <TableHeader>
+                <TableRow>
+                  <TableHead></TableHead>
+                  <TableHead>Ст</TableHead>
+                  <TableHead>1кк</TableHead>
+                  <TableHead>2кк</TableHead>
+                  <TableHead>3кк</TableHead>
+                  <TableHead>4кк</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            {" "}
+            <Table className="text-xs">
+              <TableHeader>
+                <TableRow>
+                  <TableHead></TableHead>
+                  <TableHead>Ст</TableHead>
+                  <TableHead>1кк</TableHead>
+                  <TableHead>2кк</TableHead>
+                  <TableHead>3кк</TableHead>
+                  <TableHead>4кк</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            {" "}
+            <Table className="text-xs">
+              <TableHeader>
+                <TableRow>
+                  <TableHead></TableHead>
+                  <TableHead>Ст</TableHead>
+                  <TableHead>1кк</TableHead>
+                  <TableHead>2кк</TableHead>
+                  <TableHead>3кк</TableHead>
+                  <TableHead>4кк</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Без отделки</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                  <TableCell>12,2 млн - 50м²</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </SwiperSlide>
+        </Swiper>
 
-        <Table className="text-xs">
-          <TableHeader>
-            <TableRow>
-              <TableHead></TableHead>
-              <TableHead>Ст</TableHead>
-              <TableHead>1кк</TableHead>
-              <TableHead>2кк</TableHead>
-              <TableHead>3кк</TableHead>
-              <TableHead>4кк</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>Без отделки</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Без отделки</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Без отделки</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-              <TableCell>12,2 млн - 50м²</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
         <Collapsible open={open} onOpenChange={setOpen}>
           <div className="gap-2">
             <CollapsibleTrigger>

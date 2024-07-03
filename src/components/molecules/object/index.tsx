@@ -23,7 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
@@ -68,10 +68,12 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
     resolver: yupResolver(editObjectSchema),
   });
   const { control } = form;
-
+  const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(
+    null
+  );
   const isMobile = useMedia("(max-width: 1200px)");
   const [open, setOpen] = useState(false);
-
+  const [activeSlide, setActiveSlide] = useState(0);
   if (isMobile) {
     return (
       <Sheet
@@ -555,11 +557,43 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
           </div>
         </div>
         <div className="flex gap-1">
-          <Button className="text-xs">Сдан</Button>
-          <Button variant={"secondary"} className="text-xs">
+          <Button
+            className="text-xs"
+            onClick={() => {
+              setActiveSlide(0);
+              swiperInstance?.slideTo(0);
+            }}
+            variant={"secondary"}
+            {...(activeSlide == 0 && {
+              variant: "default",
+            })}
+          >
+            Сдан
+          </Button>
+          <Button
+            variant={"secondary"}
+            className="text-xs"
+            {...(activeSlide == 1 && {
+              variant: "default",
+            })}
+            onClick={() => {
+              setActiveSlide(1);
+              swiperInstance?.slideTo(1);
+            }}
+          >
             2024
           </Button>
-          <Button variant={"secondary"} className="text-xs">
+          <Button
+            variant={"secondary"}
+            className="text-xs"
+            {...(activeSlide == 2 && {
+              variant: "default",
+            })}
+            onClick={() => {
+              setActiveSlide(2);
+              swiperInstance?.slideTo(2);
+            }}
+          >
             2025
           </Button>
         </div>
@@ -703,11 +737,43 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                     </div>
                   </div>
                   <div className="flex gap-1 flex-wrap">
-                    <Button className="text-sm">Сдан</Button>
-                    <Button variant={"secondary"} className="text-sm">
+                    <Button
+                      className="text-xs"
+                      onClick={() => {
+                        setActiveSlide(0);
+                        swiperInstance?.slideTo(0);
+                      }}
+                      variant={"secondary"}
+                      {...(activeSlide == 0 && {
+                        variant: "default",
+                      })}
+                    >
+                      Сдан
+                    </Button>
+                    <Button
+                      variant={"secondary"}
+                      className="text-xs"
+                      {...(activeSlide == 1 && {
+                        variant: "default",
+                      })}
+                      onClick={() => {
+                        setActiveSlide(1);
+                        swiperInstance?.slideTo(1);
+                      }}
+                    >
                       2024
                     </Button>
-                    <Button variant={"secondary"} className="text-sm">
+                    <Button
+                      variant={"secondary"}
+                      className="text-xs"
+                      {...(activeSlide == 2 && {
+                        variant: "default",
+                      })}
+                      onClick={() => {
+                        setActiveSlide(2);
+                        swiperInstance?.slideTo(2);
+                      }}
+                    >
                       2025
                     </Button>
                   </div>
@@ -725,32 +791,100 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
                       <CirclePlay className="w-4 h-4" /> Видео презентация
                     </Button>
                   </div>
-                  <GridTable cols={6}>
-                    <GridTableItem></GridTableItem>
-                    <GridTableItem>Ст</GridTableItem>
-                    <GridTableItem>1кк</GridTableItem>
-                    <GridTableItem>2кк</GridTableItem>
-                    <GridTableItem>3кк</GridTableItem>
-                    <GridTableItem>4кк</GridTableItem>
-                    <GridTableItem>Без отделки</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem></GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>Предчистовая</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem></GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>Чистовая</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem></GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                    <GridTableItem>12,2 млн - 50м²</GridTableItem>
-                  </GridTable>
+                  <Swiper
+                    className="w-full h-full"
+                    onSwiper={(swiper) => {
+                      setSwiperInstance(swiper);
+                    }}
+                    spaceBetween={10}
+                    slidesPerView={"auto"}
+                    freeMode={true}
+                  >
+                    <SwiperSlide className="w-full h-full">
+                      <GridTable cols={6}>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>Ст</GridTableItem>
+                        <GridTableItem>1кк</GridTableItem>
+                        <GridTableItem>2кк</GridTableItem>
+                        <GridTableItem>3кк</GridTableItem>
+                        <GridTableItem>4кк</GridTableItem>
+                        <GridTableItem>Без отделки</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>Предчистовая</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>Чистовая</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                      </GridTable>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-full h-full">
+                      <GridTable cols={6}>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>Ст</GridTableItem>
+                        <GridTableItem>1кк</GridTableItem>
+                        <GridTableItem>2кк</GridTableItem>
+                        <GridTableItem>3кк</GridTableItem>
+                        <GridTableItem>4кк</GridTableItem>
+                        <GridTableItem>Без отделки</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>Предчистовая</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>Чистовая</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                      </GridTable>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-full h-full">
+                      <GridTable cols={6}>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>Ст</GridTableItem>
+                        <GridTableItem>1кк</GridTableItem>
+                        <GridTableItem>2кк</GridTableItem>
+                        <GridTableItem>3кк</GridTableItem>
+                        <GridTableItem>4кк</GridTableItem>
+                        <GridTableItem>Без отделки</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>Предчистовая</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>Чистовая</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem></GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                        <GridTableItem>12,2 млн - 50м²</GridTableItem>
+                      </GridTable>
+                    </SwiperSlide>
+                  </Swiper>
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-col gap-2">
@@ -790,32 +924,100 @@ export const Object: FC<ObjectProps> = ({ modalOpen = false }) => {
           </DialogContent>
         </Dialog>
 
-        <GridTable cols={6}>
-          <GridTableItem></GridTableItem>
-          <GridTableItem>Ст</GridTableItem>
-          <GridTableItem>1кк</GridTableItem>
-          <GridTableItem>2кк</GridTableItem>
-          <GridTableItem>3кк</GridTableItem>
-          <GridTableItem>4кк</GridTableItem>
-          <GridTableItem>Без отделки</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem></GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>Предчистовая</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem></GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>Чистовая</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem></GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-          <GridTableItem>12,2 млн - 50м²</GridTableItem>
-        </GridTable>
+        <Swiper
+          className="w-full h-full"
+          onSwiper={(swiper) => {
+            setSwiperInstance(swiper);
+          }}
+          spaceBetween={10}
+          slidesPerView={"auto"}
+          freeMode={true}
+        >
+          <SwiperSlide className="w-full h-full">
+            <GridTable cols={6}>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>Ст</GridTableItem>
+              <GridTableItem>1кк</GridTableItem>
+              <GridTableItem>2кк</GridTableItem>
+              <GridTableItem>3кк</GridTableItem>
+              <GridTableItem>4кк</GridTableItem>
+              <GridTableItem>Без отделки</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>Предчистовая</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>Чистовая</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+            </GridTable>
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            <GridTable cols={6}>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>Ст</GridTableItem>
+              <GridTableItem>1кк</GridTableItem>
+              <GridTableItem>2кк</GridTableItem>
+              <GridTableItem>3кк</GridTableItem>
+              <GridTableItem>4кк</GridTableItem>
+              <GridTableItem>Без отделки</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>Предчистовая</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>Чистовая</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+            </GridTable>
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            <GridTable cols={6}>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>Ст</GridTableItem>
+              <GridTableItem>1кк</GridTableItem>
+              <GridTableItem>2кк</GridTableItem>
+              <GridTableItem>3кк</GridTableItem>
+              <GridTableItem>4кк</GridTableItem>
+              <GridTableItem>Без отделки</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>Предчистовая</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>Чистовая</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem></GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+              <GridTableItem>12,2 млн - 50м²</GridTableItem>
+            </GridTable>
+          </SwiperSlide>
+        </Swiper>
       </div>
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-2">

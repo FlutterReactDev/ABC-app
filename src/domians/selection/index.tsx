@@ -12,6 +12,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import { Object } from "@/components/molecules/object";
+import { DatePicker } from "@/components/atoms/date-picker";
 export const SectionPage = () => {
   const [type, setType] = useState<"list" | "map">("list");
 
@@ -24,6 +25,8 @@ export const SectionPage = () => {
       setType("map");
     }
   };
+
+  const [date, setDate] = useState<Date>();
   return (
     <div className="w-full h-full">
       <div className="grid grid-cols-2 gap-5 h-full">
@@ -36,6 +39,7 @@ export const SectionPage = () => {
             <Button variant={"secondary"}>Отложил покупку</Button>
             <Button variant={"secondary"}>Не интересуется покупкой</Button>
           </div>
+          <DatePicker value={date} onChange={setDate} />
         </div>
         <div className="w-full h-full flex flex-col gap-2">
           <Input placeholder="Поиск по Названию ЖК, застройщика, округам, районам, метро" />
