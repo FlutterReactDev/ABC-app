@@ -21,16 +21,21 @@ import { Link } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { LoginSchema, LoginType } from "./schema";
+import { useEffect } from "react";
 
 export function LoginForm() {
   const form = useForm({
     resolver: yupResolver(LoginSchema),
   });
 
+  useEffect(() => {
+    toast.success("Тестовое уведомление");
+    toast.info("Тестовое уведомление");
+    toast.error("Тестовое уведомление");
+    toast.warning("Тестовое уведомление");
+  }, []);
   const onSubmit = async (data: LoginType) => {
     console.log(data);
-
-    toast.success("Тестовое уведомление");
   };
   return (
     <Card className="mx-auto max-w-xl">
@@ -53,7 +58,7 @@ export function LoginForm() {
                     <FormItem>
                       <FormLabel>Логин</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input {...field} placeholder="Логин" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
