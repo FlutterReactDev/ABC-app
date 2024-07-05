@@ -1,9 +1,7 @@
 import { Map2GIS } from "@/components/atoms/2GIS";
-
 import { DirectoryFilter } from "@/components/molecules/directory-filter";
 import { Object } from "@/components/molecules/object";
 import { Button } from "@/components/ui/button";
-
 import { ObjectMarker } from "@/components/atoms/object-marker";
 import { Input } from "@/components/ui/input";
 import {
