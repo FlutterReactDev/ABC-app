@@ -44,7 +44,7 @@ export const SettingPage = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5">
             <div className="grid grid-cols-1 gap-2">
               <FormField
                 control={control}

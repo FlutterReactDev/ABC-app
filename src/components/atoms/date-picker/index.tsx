@@ -43,7 +43,7 @@ export const DatePicker: FC<DatePickerProps> = (props) => {
           mode="single"
           selected={value}
           onSelect={onChange}
-          numberOfMonths={2}
+          numberOfMonths={6}
           locale={ru}
           initialFocus
         />
