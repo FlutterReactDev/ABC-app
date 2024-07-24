@@ -14,7 +14,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         }
     };
     return (
-        <div className="h-dvh bg-[#F8FAFB]">
+        <div className="bg-[#F8FAFB]">
             <div
                 className={cn(
                     "grid grid-cols-1 lg:grid-cols-[175px_minmax(0px,1fr)] h-full transition-all grid-rows-1",
@@ -24,9 +24,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
                 <Sidebar collapsed={collapsed} onToggle={onToggle} />
                 <div className="h-full flex flex-col  ">
                     <Header />
-                    <main className="lg:p-8 h-full overflow-y-auto flex-1">
-                        {children}
-                    </main>
+                    <main className="lg:p-8">{children}</main>
                 </div>
             </div>
         </div>

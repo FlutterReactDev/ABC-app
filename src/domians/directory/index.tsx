@@ -23,7 +23,7 @@ import { ChevronDown, ChevronLeft, ChevronRight, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { Drawer } from "vaul";
-
+import { YMaps, Map, Placemark } from "react-yandex-maps";
 export const DirectoryPage = () => {
     const { data } = useGetObjectListQuery();
     const isMobile = useMedia("(max-width: 900px)");
@@ -50,107 +50,6 @@ export const DirectoryPage = () => {
     return (
         <div className="w-full h-full">
             {!isMobile && <DirectoryFilter />}
-            {!isMobile && (
-                <div className="flex flex-col gap-4 mt-4">
-                    <div className="flex justify-between">
-                        {collapsed ? (
-                            <Button
-                                onClick={onToggleCollapse}
-                                className="sticky top-0"
-                            >
-                                <ChevronRight className="w-4 h-4" />
-                                Развернуть
-                            </Button>
-                        ) : (
-                            <Button onClick={onToggleCollapse}>
-                                <ChevronLeft className="w-4 h-4" />
-                                Свернуть
-                            </Button>
-                        )}
-
-                        <div className="flex gap-1 items-center">
-                            <Popover>
-                                <PopoverTrigger>
-                                    <Button variant={"ghost"}>
-                                        По приоритету <ChevronDown />
-                                    </Button>
-                                </PopoverTrigger>
-                                <PopoverContent
-                                    className=" flex flex-col gap-2 justify-start"
-                                    align="end"
-                                >
-                                    <Button
-                                        variant={"ghost"}
-                                        className="justify-start"
-                                    >
-                                        По приоритету
-                                    </Button>
-                                    <Button
-                                        variant={"ghost"}
-                                        className="justify-start"
-                                    >
-                                        Цена по возрастанию
-                                    </Button>
-                                    <Button
-                                        variant={"ghost"}
-                                        className="justify-start"
-                                    >
-                                        Цена по убыванию
-                                    </Button>
-                                    <Button
-                                        variant={"ghost"}
-                                        className="justify-start"
-                                    >
-                                        Площадь по возрастанию
-                                    </Button>
-                                    <Button
-                                        variant={"ghost"}
-                                        className="justify-start"
-                                    >
-                                        Площадь по убыванию
-                                    </Button>
-                                </PopoverContent>
-                            </Popover>
-                        </div>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <Button className="italic cursor-pointer">
-                            Панорамное остекление
-                        </Button>
-                        <Button
-                            variant={"secondary"}
-                            className="italic cursor-pointer"
-                        >
-                            Лоджия
-                        </Button>
-                        <Button
-                            variant={"secondary"}
-                            className="italic cursor-pointer"
-                        >
-                            Балкон
-                        </Button>
-                        <Button
-                            variant={"secondary"}
-                            className="italic cursor-pointer"
-                        >
-                            Кладовые
-                        </Button>
-                        <Button
-                            variant={"secondary"}
-                            className="italic cursor-pointer"
-                        >
-                            Терасса
-                        </Button>
-                        <Button
-                            variant={"secondary"}
-                            className="italic cursor-pointer"
-                        >
-                            Низкоэтажность
-                        </Button>
-                    </div>
-                </div>
-            )}
 
             {!isMobile && (
                 <div
@@ -165,24 +64,131 @@ export const DirectoryPage = () => {
                             collapsed && "hidden"
                         )}
                     >
+                        <div className="flex flex-col gap-4 mt-4">
+                            <div className="flex justify-between">
+                                {collapsed ? (
+                                    <Button
+                                        onClick={onToggleCollapse}
+                                        className="sticky top-0"
+                                    >
+                                        <ChevronRight className="w-4 h-4" />
+                                        Развернуть
+                                    </Button>
+                                ) : (
+                                    <Button onClick={onToggleCollapse}>
+                                        <ChevronLeft className="w-4 h-4" />
+                                        Свернуть
+                                    </Button>
+                                )}
+
+                                <div className="flex gap-1 items-center">
+                                    <Popover>
+                                        <PopoverTrigger>
+                                            <Button variant={"ghost"}>
+                                                По приоритету <ChevronDown />
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent
+                                            className=" flex flex-col gap-2 justify-start"
+                                            align="end"
+                                        >
+                                            <Button
+                                                variant={"ghost"}
+                                                className="justify-start"
+                                            >
+                                                По приоритету
+                                            </Button>
+                                            <Button
+                                                variant={"ghost"}
+                                                className="justify-start"
+                                            >
+                                                Цена по возрастанию
+                                            </Button>
+                                            <Button
+                                                variant={"ghost"}
+                                                className="justify-start"
+                                            >
+                                                Цена по убыванию
+                                            </Button>
+                                            <Button
+                                                variant={"ghost"}
+                                                className="justify-start"
+                                            >
+                                                Площадь по возрастанию
+                                            </Button>
+                                            <Button
+                                                variant={"ghost"}
+                                                className="justify-start"
+                                            >
+                                                Площадь по убыванию
+                                            </Button>
+                                        </PopoverContent>
+                                    </Popover>
+                                </div>
+                            </div>
+                            <Separator />
+                            <div className="flex gap-2">
+                                <Button className="italic cursor-pointer">
+                                    Панорамное остекление
+                                </Button>
+                                <Button
+                                    variant={"secondary"}
+                                    className="italic cursor-pointer"
+                                >
+                                    Лоджия
+                                </Button>
+                                <Button
+                                    variant={"secondary"}
+                                    className="italic cursor-pointer"
+                                >
+                                    Балкон
+                                </Button>
+                                <Button
+                                    variant={"secondary"}
+                                    className="italic cursor-pointer"
+                                >
+                                    Кладовые
+                                </Button>
+                                <Button
+                                    variant={"secondary"}
+                                    className="italic cursor-pointer"
+                                >
+                                    Терасса
+                                </Button>
+                                <Button
+                                    variant={"secondary"}
+                                    className="italic cursor-pointer"
+                                >
+                                    Низкоэтажность
+                                </Button>
+                            </div>
+                        </div>
                         {data && <ObjectList list={data} modalOpen />}
                     </div>
-                    <div className="flex h-dvh w-full  rounded-lg sticky top-[-35px]">
-                        <Map2GIS
-                            initialMapOptions={{
-                                center: [74.603605, 42.876452],
-                                zoom: 15,
+
+                    <YMaps>
+                        <Map
+                            className="h-dvh w-full  rounded-lg sticky top-[40px] overflow-hidden "
+                            defaultState={{
+                                center: [55.751574, 37.573856],
+                                zoom: 9,
                             }}
-                            className="w-full h-full rounded-lg overflow-hidden"
                         >
-                            <ObjectMarker
-                                coordinates={[74.604923, 42.847277]}
-                            />
-                            <ObjectMarker
-                                coordinates={[74.620365, 42.852053]}
-                            />
-                        </Map2GIS>
-                    </div>
+                            {collapsed && (
+                                <Button
+                                    onClick={onToggleCollapse}
+                                    className="absolute top-2 left-2"
+                                >
+                                    <ChevronRight className="w-4 h-4" />
+                                    Развернуть
+                                </Button>
+                            )}
+                            <Placemark geometry={[55.751574, 37.573856]} />
+                            <Placemark geometry={[55.751474, 37.573856]} />
+                            <Placemark geometry={[55.751674, 37.573856]} />
+                            <Placemark geometry={[55.75174, 37.573856]} />
+                        </Map>
+                    </YMaps>
                 </div>
             )}
             {isMobile && (

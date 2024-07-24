@@ -10,7 +10,7 @@ interface SidebarProps {
 export const Sidebar: FC<SidebarProps> = (props) => {
     const { collapsed } = props;
     return (
-        <aside className="h-full w-full flex-col items-start px-4 bg-white border-l border hidden lg:flex">
+        <aside className="flex-col items-start px-4 bg-white border-l border hidden lg:flex sticky top-0 w-full h-dvh">
             <div className="mt-6 flex gap-2 items-center justify-between w-full">
                 {!collapsed && <Logo />}
 

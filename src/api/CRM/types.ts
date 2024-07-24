@@ -32,14 +32,11 @@ export interface CRM {
             string,
             Record<
                 string,
-                Record<
-                    string,
-                    {
-                        price: string;
-                        square: string;
-                        offer: string;
-                    }
-                >
+                {
+                    price: string;
+                    square: string;
+                    offer: string;
+                }
             >
         >
     >;

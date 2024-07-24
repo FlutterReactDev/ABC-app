@@ -23,7 +23,7 @@ const user = {
 export const Header = () => {
     const [open, setOpen] = useState(false);
     return (
-        <header className="border-b bg-white flex items-center px-5 gap-4 md:px-14 justify-end h-[50px] pointer-events-auto">
+        <header className="border-b bg-white flex items-center px-5 gap-4 md:px-14 justify-end h-[50px] pointer-events-auto sticky top-0 z-50">
             <AvatarDropdown user={user} />
             <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
