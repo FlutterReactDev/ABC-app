@@ -49,20 +49,16 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
     const { modalOpen = false, onCollapseClick, ...objectProps } = props;
 
     const {
-        address,
-        appartament,
         area,
         ceiling,
-        city,
+
         class: objectClass,
         content_about,
         content_location,
-        delivery,
-        developer,
+
         dinamic,
         district,
-        euroformat,
-        finish,
+
         logo,
         metro,
         name,
@@ -70,9 +66,9 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
         parking,
         photo,
         price,
-        priority,
+
         promo,
-        region,
+
         repair,
         tag,
         time,

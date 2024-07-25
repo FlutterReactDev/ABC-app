@@ -19,18 +19,23 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronLeft, ChevronRight, Menu } from "lucide-react";
+import {
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    Loader2,
+    Menu,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { Drawer } from "vaul";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 export const DirectoryPage = () => {
-    const { data } = useGetObjectListQuery();
+    const { data, isSuccess, isLoading } = useGetObjectListQuery();
     const isMobile = useMedia("(max-width: 900px)");
     const [snap, setSnap] = useState<number | string | null>("90px");
     const [open, setOpen] = useState(true);
     const [collapsed, setCollapsed] = useState(true);
-    console.log(data);
 
     useEffect(() => {
         if (!open) {
@@ -58,113 +63,121 @@ export const DirectoryPage = () => {
                         collapsed && "grid-cols-1"
                     )}
                 >
-                    <div
-                        className={cn(
-                            "flex flex-col gap-2",
-                            collapsed && "hidden"
-                        )}
-                    >
-                        <div className="flex flex-col gap-4 mt-4">
-                            <div className="flex justify-between">
-                                {collapsed ? (
-                                    <Button
-                                        onClick={onToggleCollapse}
-                                        className="sticky top-0"
-                                    >
-                                        <ChevronRight className="w-4 h-4" />
-                                        Развернуть
-                                    </Button>
-                                ) : (
-                                    <Button onClick={onToggleCollapse}>
-                                        <ChevronLeft className="w-4 h-4" />
-                                        Свернуть
-                                    </Button>
-                                )}
-
-                                <div className="flex gap-1 items-center">
-                                    <Popover>
-                                        <PopoverTrigger>
-                                            <Button variant={"ghost"}>
-                                                По приоритету <ChevronDown />
-                                            </Button>
-                                        </PopoverTrigger>
-                                        <PopoverContent
-                                            className=" flex flex-col gap-2 justify-start"
-                                            align="end"
+                    {!collapsed && (
+                        <div
+                            className={cn(
+                                "flex flex-col gap-2",
+                                collapsed && "hidden"
+                            )}
+                        >
+                            <div className="flex flex-col gap-4 mt-4">
+                                <div className="flex justify-between">
+                                    {collapsed ? (
+                                        <Button
+                                            onClick={onToggleCollapse}
+                                            className="sticky top-0"
                                         >
-                                            <Button
-                                                variant={"ghost"}
-                                                className="justify-start"
+                                            <ChevronRight className="w-4 h-4" />
+                                            Развернуть
+                                        </Button>
+                                    ) : (
+                                        <Button onClick={onToggleCollapse}>
+                                            <ChevronLeft className="w-4 h-4" />
+                                            Свернуть
+                                        </Button>
+                                    )}
+
+                                    <div className="flex gap-1 items-center">
+                                        <Popover>
+                                            <PopoverTrigger>
+                                                <Button variant={"ghost"}>
+                                                    По приоритету{" "}
+                                                    <ChevronDown />
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent
+                                                className=" flex flex-col gap-2 justify-start"
+                                                align="end"
                                             >
-                                                По приоритету
-                                            </Button>
-                                            <Button
-                                                variant={"ghost"}
-                                                className="justify-start"
-                                            >
-                                                Цена по возрастанию
-                                            </Button>
-                                            <Button
-                                                variant={"ghost"}
-                                                className="justify-start"
-                                            >
-                                                Цена по убыванию
-                                            </Button>
-                                            <Button
-                                                variant={"ghost"}
-                                                className="justify-start"
-                                            >
-                                                Площадь по возрастанию
-                                            </Button>
-                                            <Button
-                                                variant={"ghost"}
-                                                className="justify-start"
-                                            >
-                                                Площадь по убыванию
-                                            </Button>
-                                        </PopoverContent>
-                                    </Popover>
+                                                <Button
+                                                    variant={"ghost"}
+                                                    className="justify-start"
+                                                >
+                                                    По приоритету
+                                                </Button>
+                                                <Button
+                                                    variant={"ghost"}
+                                                    className="justify-start"
+                                                >
+                                                    Цена по возрастанию
+                                                </Button>
+                                                <Button
+                                                    variant={"ghost"}
+                                                    className="justify-start"
+                                                >
+                                                    Цена по убыванию
+                                                </Button>
+                                                <Button
+                                                    variant={"ghost"}
+                                                    className="justify-start"
+                                                >
+                                                    Площадь по возрастанию
+                                                </Button>
+                                                <Button
+                                                    variant={"ghost"}
+                                                    className="justify-start"
+                                                >
+                                                    Площадь по убыванию
+                                                </Button>
+                                            </PopoverContent>
+                                        </Popover>
+                                    </div>
+                                </div>
+                                <Separator />
+                                <div className="flex gap-2">
+                                    <Button className="italic cursor-pointer">
+                                        Панорамное остекление
+                                    </Button>
+                                    <Button
+                                        variant={"secondary"}
+                                        className="italic cursor-pointer"
+                                    >
+                                        Лоджия
+                                    </Button>
+                                    <Button
+                                        variant={"secondary"}
+                                        className="italic cursor-pointer"
+                                    >
+                                        Балкон
+                                    </Button>
+                                    <Button
+                                        variant={"secondary"}
+                                        className="italic cursor-pointer"
+                                    >
+                                        Кладовые
+                                    </Button>
+                                    <Button
+                                        variant={"secondary"}
+                                        className="italic cursor-pointer"
+                                    >
+                                        Терасса
+                                    </Button>
+                                    <Button
+                                        variant={"secondary"}
+                                        className="italic cursor-pointer"
+                                    >
+                                        Низкоэтажность
+                                    </Button>
                                 </div>
                             </div>
-                            <Separator />
-                            <div className="flex gap-2">
-                                <Button className="italic cursor-pointer">
-                                    Панорамное остекление
-                                </Button>
-                                <Button
-                                    variant={"secondary"}
-                                    className="italic cursor-pointer"
-                                >
-                                    Лоджия
-                                </Button>
-                                <Button
-                                    variant={"secondary"}
-                                    className="italic cursor-pointer"
-                                >
-                                    Балкон
-                                </Button>
-                                <Button
-                                    variant={"secondary"}
-                                    className="italic cursor-pointer"
-                                >
-                                    Кладовые
-                                </Button>
-                                <Button
-                                    variant={"secondary"}
-                                    className="italic cursor-pointer"
-                                >
-                                    Терасса
-                                </Button>
-                                <Button
-                                    variant={"secondary"}
-                                    className="italic cursor-pointer"
-                                >
-                                    Низкоэтажность
-                                </Button>
-                            </div>
+                            {isSuccess && <ObjectList list={data} modalOpen />}
+                            {isLoading && (
+                                <div className="flex items-center justify-center">
+                                    <Loader2 className="animate-spin" />
+                                </div>
+                            )}
                         </div>
-                        {data && <ObjectList list={data} modalOpen />}
-                    </div>
+                    )}
 
                     <YMaps>
                         <Map
