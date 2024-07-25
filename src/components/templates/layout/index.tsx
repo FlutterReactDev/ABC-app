@@ -14,7 +14,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         }
     };
     return (
-        <div className="bg-[#F8FAFB]">
+        <div className="bg-muted">
             <div
                 className={cn(
                     "grid grid-cols-1 lg:grid-cols-[175px_minmax(0px,1fr)] h-full transition-all grid-rows-1",

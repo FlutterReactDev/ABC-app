@@ -135,36 +135,36 @@ export const DirectoryPage = () => {
                                 </div>
                                 <Separator />
                                 <div className="flex gap-2">
-                                    <Button className="italic cursor-pointer">
+                                    <Button className="italic cursor-pointer text-xs">
                                         Панорамное остекление
                                     </Button>
                                     <Button
                                         variant={"secondary"}
-                                        className="italic cursor-pointer"
+                                        className="italic cursor-pointer text-xs"
                                     >
                                         Лоджия
                                     </Button>
                                     <Button
                                         variant={"secondary"}
-                                        className="italic cursor-pointer"
+                                        className="italic cursor-pointer text-xs"
                                     >
                                         Балкон
                                     </Button>
                                     <Button
                                         variant={"secondary"}
-                                        className="italic cursor-pointer"
+                                        className="italic cursor-pointer text-xs"
                                     >
                                         Кладовые
                                     </Button>
                                     <Button
                                         variant={"secondary"}
-                                        className="italic cursor-pointer"
+                                        className="italic cursor-pointer text-xs"
                                     >
                                         Терасса
                                     </Button>
                                     <Button
                                         variant={"secondary"}
-                                        className="italic cursor-pointer"
+                                        className="italic cursor-pointer text-xs"
                                     >
                                         Низкоэтажность
                                     </Button>
