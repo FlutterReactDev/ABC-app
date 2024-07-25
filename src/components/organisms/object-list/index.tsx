@@ -10,13 +10,13 @@ export const ObjectList: FC<ObjectListProps> = ({ list, modalOpen }) => {
     const listRef = useRef<HTMLDivElement | null>(null);
     const virtualizer = useWindowVirtualizer({
         count: list.length,
-        estimateSize: () => 730,
-        overscan: 5,
+        estimateSize: () => 45,
+        gap: 10,
         scrollMargin: listRef.current?.offsetTop ?? 0,
     });
 
     return (
-        <div ref={listRef} className="flex flex-col gap-2 mb-1">
+        <div ref={listRef} className="mb-1">
             <div
                 style={{
                     width: "100%",
@@ -26,25 +26,30 @@ export const ObjectList: FC<ObjectListProps> = ({ list, modalOpen }) => {
             >
                 {virtualizer
                     .getVirtualItems()
-                    .map(({ index, size, start, key }) => {
+                    .map(({ index, start, key, measureElement }) => {
                         return (
                             <div
                                 key={key}
+                                data-index={index}
                                 style={{
                                     position: "absolute",
                                     top: 0,
                                     left: 0,
                                     zIndex: 40,
                                     width: "100%",
-                                    height: `${size}px`,
+                                    marginBottom: "15px",
                                     transform: `translateY(${
                                         start - virtualizer.options.scrollMargin
                                     }px)`,
                                 }}
+                                ref={measureElement}
                             >
                                 <ObjectCard
                                     modalOpen={modalOpen}
                                     {...list[index]}
+                                    onCollapseClick={() => {
+                                        virtualizer.scrollToIndex(index);
+                                    }}
                                 />
                             </div>
                         );

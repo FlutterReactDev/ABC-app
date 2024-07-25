@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FC, MutableRefObject, useRef } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { v4 as uuidv4 } from "uuid";
 interface ObjectPreviewSliderProps {
     photo: string[];
 }
@@ -12,12 +12,13 @@ export const ObjectPreviewSlider: FC<ObjectPreviewSliderProps> = (props) => {
     const { photo } = props;
     const nextButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
     const prevButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
+    const id = uuidv4();
     return (
         <div className="relative w-full h-full rounded-md overflow-hidden">
             <Swiper
                 navigation={{
-                    prevEl: ".object-prev-button",
-                    nextEl: ".object-next-button",
+                    prevEl: `.object-prev-button-${id}`,
+                    nextEl: `.object-next-button-${id}`,
                 }}
                 modules={[Navigation]}
                 className="w-full h-full"
@@ -35,7 +36,7 @@ export const ObjectPreviewSlider: FC<ObjectPreviewSliderProps> = (props) => {
             </Swiper>
             <Button
                 ref={prevButtonRef}
-                className="absolute object-prev-button z-50 top-[50%] left-2 w-7 h-7 translate-y-[-49%]"
+                className={`absolute object-prev-button-${id} z-50 top-[50%] left-2 w-7 h-7 translate-y-[-49%]`}
                 variant={"outline"}
                 size={"icon"}
             >
@@ -44,7 +45,7 @@ export const ObjectPreviewSlider: FC<ObjectPreviewSliderProps> = (props) => {
             <Button
                 ref={nextButtonRef}
                 variant={"outline"}
-                className="absolute object-next-button z-50 top-[50%] right-2 w-7 h-7 translate-y-[-49%]"
+                className={`absolute object-next-button-${id} z-50 top-[50%] right-2 w-7 h-7 translate-y-[-49%]`}
                 size={"icon"}
             >
                 <ChevronRight />

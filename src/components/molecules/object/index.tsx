@@ -42,10 +42,11 @@ import {
 } from "@/components/ui/collapsible";
 interface ObjectProps extends CRM {
     modalOpen?: boolean;
+    onCollapseClick?: () => void;
 }
 
 export const ObjectCard: FC<ObjectProps> = (props) => {
-    const { modalOpen = false, ...objectProps } = props;
+    const { modalOpen = false, onCollapseClick, ...objectProps } = props;
 
     const {
         address,
@@ -1450,7 +1451,11 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
                     </div>
                 </CollapsibleContent>
                 <CollapsibleTrigger asChild>
-                    <Button variant={"ghost"} className="w-full">
+                    <Button
+                        variant={"ghost"}
+                        className="w-full"
+                        onClick={onCollapseClick}
+                    >
                         {objectDetailIsOpen ? <ChevronUp /> : <ChevronDown />}
                     </Button>
                 </CollapsibleTrigger>
