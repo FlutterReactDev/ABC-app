@@ -1427,7 +1427,7 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
                             <div className="flex gap-2">
                                 {tag.map((name) => {
                                     return (
-                                        <Button variant={"secondary"}>
+                                        <Button variant={"secondary"} className="text-[11px]">
                                             {name}
                                         </Button>
                                     );
