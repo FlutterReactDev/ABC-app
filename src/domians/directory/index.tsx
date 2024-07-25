@@ -177,7 +177,7 @@ export const DirectoryPage = () => {
                             {collapsed && (
                                 <Button
                                     onClick={onToggleCollapse}
-                                    className="absolute top-2 left-2"
+                                    className="absolute top-2 left-2 z-20"
                                 >
                                     <ChevronRight className="w-4 h-4" />
                                     Развернуть
