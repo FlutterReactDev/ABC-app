@@ -2,11 +2,14 @@ import { CRM } from "@/api/CRM/types";
 import { FC, useRef } from "react";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { ObjectCard } from "@/components/molecules/object";
-interface ObjectListProps {
+interface ObjectSelectionListProps {
     list: CRM[];
     modalOpen: boolean;
 }
-export const ObjectList: FC<ObjectListProps> = ({ list, modalOpen }) => {
+export const ObjectSelectionList: FC<ObjectSelectionListProps> = ({
+    list,
+    modalOpen,
+}) => {
     const listRef = useRef<HTMLDivElement | null>(null);
     const virtualizer = useWindowVirtualizer({
         count: list.length,
@@ -45,9 +48,9 @@ export const ObjectList: FC<ObjectListProps> = ({ list, modalOpen }) => {
                                 ref={measureElement}
                             >
                                 <ObjectCard
-                                    selection={false}
+                                    selection={true}
                                     transferred={false}
-                                    editable={true}
+                                    editable={false}
                                     modalOpen={modalOpen}
                                     {...list[index]}
                                     onCollapseClick={() => {

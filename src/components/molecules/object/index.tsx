@@ -40,13 +40,25 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
 interface ObjectProps extends CRM {
     modalOpen?: boolean;
     onCollapseClick?: () => void;
+    editable: boolean;
+    transferred: boolean;
+    selection: boolean;
 }
 
 export const ObjectCard: FC<ObjectProps> = (props) => {
-    const { modalOpen = false, onCollapseClick, ...objectProps } = props;
+    const {
+        modalOpen = false,
+        onCollapseClick,
+        editable,
+        transferred,
+        selection,
+        ...objectProps
+    } = props;
 
     const {
         area,
@@ -87,7 +99,7 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
     const isMobile = useMedia("(max-width: 1200px)");
     const [open, setOpen] = useState(false);
     const [activeSlide, setActiveSlide] = useState(0);
-
+    const [isTransfered, setIsTransfered] = useState(transferred);
     if (isMobile) {
         return (
             <Sheet
@@ -604,15 +616,34 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
     }
 
     return (
-        <div className="bg-white p-4 flex flex-col gap-4 text-[13px] relative text-xs">
+        <div
+            className={cn(
+                "bg-white p-4 flex flex-col gap-4 text-[13px] relative text-xs",
+                isTransfered && "bg-primary/10"
+            )}
+        >
             <div>
                 <Badge className="text-xs">
                     <ArrowUp />
                     {dinamic}
                 </Badge>
             </div>
-            <EditObjectButton object={objectProps} />
-
+            {editable && <EditObjectButton object={objectProps} />}
+            {selection && (
+                <div className="flex gap-1 absolute top-4 right-4">
+                    <Checkbox
+                        checked={isTransfered}
+                        onCheckedChange={(value) => {
+                            if (typeof value == "boolean") {
+                                setIsTransfered(value);
+                            }
+                        }}
+                    />
+                    <label className="text-sm font-medium leading-none text-foreground">
+                        Переведен
+                    </label>
+                </div>
+            )}
             <div className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <Avatar className="h-14 w-14">
@@ -1427,7 +1458,10 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
                             <div className="flex gap-2">
                                 {tag.map((name) => {
                                     return (
-                                        <Button variant={"secondary"} className="text-[11px]">
+                                        <Button
+                                            variant={"secondary"}
+                                            className="text-[11px]"
+                                        >
                                             {name}
                                         </Button>
                                     );
