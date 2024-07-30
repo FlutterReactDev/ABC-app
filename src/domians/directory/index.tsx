@@ -30,6 +30,7 @@ import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { Drawer } from "vaul";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
+import { ObjectCard } from "@/components/molecules/object";
 export const DirectoryPage = () => {
     const { data, isSuccess, isLoading } = useGetObjectListQuery();
     const isMobile = useMedia("(max-width: 900px)");
@@ -205,16 +206,18 @@ export const DirectoryPage = () => {
                 </div>
             )}
             {isMobile && (
-                <Map2GIS
-                    initialMapOptions={{
-                        center: [74.603605, 42.876452],
-                        zoom: 15,
-                    }}
-                    className="w-full h-full rounded-lg overflow-hidden z-50 pointer-events-auto"
-                >
-                    <ObjectMarker coordinates={[74.604923, 42.847277]} />
-                    <ObjectMarker coordinates={[74.620365, 42.852053]} />
-                </Map2GIS>
+                <div className="h-dvh">
+                    <Map2GIS
+                        initialMapOptions={{
+                            center: [74.603605, 42.876452],
+                            zoom: 15,
+                        }}
+                        className="w-full h-full rounded-lg overflow-hidden z-50 pointer-events-auto"
+                    >
+                        <ObjectMarker coordinates={[74.604923, 42.847277]} />
+                        <ObjectMarker coordinates={[74.620365, 42.852053]} />
+                    </Map2GIS>
+                </div>
             )}
             {isMobile && open && (
                 <Drawer.Root
@@ -274,9 +277,19 @@ export const DirectoryPage = () => {
                                     }
                                 )}
                             >
-                                {data && (
-                                    <ObjectList modalOpen={false} list={data} />
-                                )}
+                                {data &&
+                                    data.map((object, idx) => {
+                                        return (
+                                            <ObjectCard
+                                                {...object}
+                                                key={idx}
+                                                editable
+                                                selection={false}
+                                                transferred={false}
+                                                modalOpen={false}
+                                            />
+                                        );
+                                    })}
                             </div>
                         </Drawer.Content>
                     </Drawer.Portal>
