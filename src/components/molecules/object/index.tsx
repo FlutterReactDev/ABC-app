@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -30,17 +29,17 @@ import { CRM } from "@/api/CRM/types";
 import { EditObjectButton } from "@/components/atoms/edit-object-button";
 import { ObjectPreviewSlider } from "@/components/atoms/object-preview-slider";
 import { ObjectVideoButton } from "@/components/atoms/object-video-button";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Checkbox } from "@/components/ui/checkbox";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 interface ObjectProps extends CRM {
     modalOpen?: boolean;
@@ -804,7 +803,7 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
     return (
         <div
             className={cn(
-                "bg-white p-4 flex flex-col gap-4 text-[13px] relative text-xs",
+                "bg-white p-4 flex flex-col gap-1 text-[13px] relative text-xs",
                 isTransfered && "bg-primary/10"
             )}
         >

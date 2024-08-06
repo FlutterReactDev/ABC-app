@@ -30,7 +30,7 @@ export const DirectoryFilter = () => {
                         <div className="flex flex-col gap-4">
                             <Input placeholder="Поиск по Названию ЖК, Застройщика, Округам, Районам, Метро" />
                             <div className="flex gap-8  flex-wrap">
-                                <div className="flex flex-col gap-2 flex-1">
+                                <div className="flex flex-col gap-3.5 flex-1">
                                     <div className="flex flex-col gap-2">
                                         <Label>Город</Label>
                                         <CitySelect onChange={() => {}} />
@@ -49,11 +49,11 @@ export const DirectoryFilter = () => {
                                         </label>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-2 ">
+                                <div className="flex flex-col gap-3.5">
                                     <Label>Направление</Label>
                                     <DirectionFilter />
                                 </div>
-                                <div className="flex flex-col gap-2 ">
+                                <div className="flex flex-col gap-3.5 ">
                                     <Label>Цена</Label>
                                     <div className="flex gap-2 ">
                                         <CurrencyInput
@@ -79,7 +79,7 @@ export const DirectoryFilter = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-2 ">
+                                <div className="flex flex-col gap-3.5 ">
                                     <Label>Класс ЖК</Label>
                                     <div className="flex gap-3">
                                         <div className="flex gap-2 flex-col">
@@ -119,7 +119,7 @@ export const DirectoryFilter = () => {
                                                     htmlFor="north"
                                                     className="text-sm font-medium leading-none text-foreground"
                                                 >
-                                                    Элита
+                                                    Элитка
                                                 </label>
                                             </div>
                                         </div>
@@ -159,7 +159,7 @@ export const DirectoryFilter = () => {
                                         </Button>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-2 md:max-w-56 w-full">
+                                <div className="flex flex-col gap-3.5 md:max-w-56 w-full">
                                     <Label>Срок сдачи</Label>
                                     <DeadlineSelect onChange={() => {}} />
                                     <Label>Отделка</Label>
