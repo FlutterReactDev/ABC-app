@@ -18,7 +18,7 @@ import { useState } from "react";
 
 export const DirectoryFilter = () => {
     const [open, setOpen] = useState(false);
-
+    
     return (
         <div className="bg-white p-2 ">
             <Collapsible open={open} onOpenChange={setOpen}>

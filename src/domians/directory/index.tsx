@@ -20062,7 +20062,6 @@ export const DirectoryPage = () => {
                                 center: [74.606309, 42.848305],
                                 zoom: 15,
                             }}
-                            
                         >
                             <ObjectMarker
                                 coordinates={[74.604923, 42.847277]}

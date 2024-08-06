@@ -77,9 +77,7 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
         parking,
         photo,
         price,
-
         promo,
-
         repair,
         tag,
         time,

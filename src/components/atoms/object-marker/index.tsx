@@ -51,7 +51,7 @@ export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
     const { isOpen, onToggle, onClose } = useDisclosure();
 
     return (
-        <HtmlMarker2GIS coordinates={coordinates}>
+        <HtmlMarker2GIS coordinates={coordinates} zIndex={1}>
             <ChakraProvider>
                 <Global
                     styles={`
@@ -91,21 +91,17 @@ export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
     }
       `}
                 />
-                <Popover isOpen={isOpen} onOpen={onToggle}>
+                <Popover isOpen={isOpen} onOpen={onToggle} strategy="fixed"  closeOnBlur={false}>
                     <PopoverTrigger>
-                        <Button
-                            size={"icon"}
-                            onClick={onToggle}
-                            className="z-10"
-                        >
+                        <Button size={"icon"} onClick={onToggle} className="z-0">
                             <Home />
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent maxWidth={"700px"} w={"100%"}>
+                    <PopoverContent maxWidth={"700px"} w={"100%"} >
                         <PopoverArrow />
                         <PopoverCloseButton />
 
-                        <PopoverBody className="w-full">
+                        <PopoverBody className="w-full z-50" zIndex={"10000000"}>
                             <div className="relative bg-white rounded p-3.5 flex flex-col gap-3 max-w-2xl w-full text-xs">
                                 <Button
                                     className="absolute right-2 w-6 h-6"
