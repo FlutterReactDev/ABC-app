@@ -19877,7 +19877,7 @@ export const SectionPage = () => {
     return (
         <div className="w-full h-full">
             <div className="grid grid-cols-2 gap-5 h-full">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 ">
                     <div className="flex gap-2 flex-wrap ">
                         <Button variant={"secondary"} className="text-xs">
                             Отказ от общения
@@ -20135,7 +20135,7 @@ export const SectionPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex flex-col gap-2 h-dvh">
+                <div className="w-full flex flex-col gap-2 ">
                     <Input placeholder="Поиск по Названию ЖК, застройщика, округам, районам, метро" />
                     <div className="flex justify-between gap-2">
                         <div className="flex gap-1 items-center">
