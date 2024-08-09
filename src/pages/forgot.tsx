@@ -1,29 +1,31 @@
-import { LoginForm } from "@/components/forms/login-form";
-import { loginSchmea } from "@/components/forms/login-form/schema";
+import { ForgotForm } from "@/components/forms/forgot-form";
+import { forgotSchema } from "@/components/forms/forgot-form/schema";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "@tanstack/react-router";
+
 import { Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { InferType, object } from "yup";
+import { Link } from "@tanstack/react-router";
 const schema = object({
-    login: loginSchmea,
+    forgot: forgotSchema,
 });
-export const Login = () => {
+export const ForgotPage = () => {
     const form = useForm({
         resolver: yupResolver(schema),
     });
-    const onLogin = (data: InferType<typeof schema>) => {
+
+    const onForgot = (data: InferType<typeof schema>) => {
         console.log(data);
     };
     return (
@@ -35,12 +37,13 @@ export const Login = () => {
                         Введите данные учетной записи для авторизации
                     </CardDescription>
                 </CardHeader>
-                <form onSubmit={form.handleSubmit(onLogin)}>
+                
+                <form onSubmit={form.handleSubmit(onForgot)}>
                     <Form {...form}>
                         <CardContent className="px-11 pt-0">
-                            <LoginForm form={nestedForm(form, "login")} />
+                            <ForgotForm form={nestedForm(form, "forgot")} />
                             <Button type="submit" className="w-full mt-10 h-12">
-                                Авторизаться
+                                Отправить на почту
                             </Button>
                         </CardContent>
                         <CardFooter className="flex flex-col gap-4 px-11">
@@ -63,8 +66,16 @@ export const Login = () => {
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-2 w-full">
-                                <Button className="w-full h-12" variant={"outline"}>@testname</Button>
-                                <Button className="w-full h-12" variant={"outline"}>
+                                <Button
+                                    className="w-full h-12"
+                                    variant={"outline"}
+                                >
+                                    @testname
+                                </Button>
+                                <Button
+                                    className="w-full h-12"
+                                    variant={"outline"}
+                                >
                                     <Phone />
                                     +7 (777) 777-77-77
                                 </Button>
