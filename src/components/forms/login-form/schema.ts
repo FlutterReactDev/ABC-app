@@ -1,8 +1,8 @@
 import { InferType, object, string } from "yup";
 
 export const loginSchmea = object({
-    email: string().email().required(),
-    password: string().min(6).required(),
+    login_email: string().email().required(),
+    login_password: string().min(6).required(),
 });
 
 

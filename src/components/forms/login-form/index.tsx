@@ -19,7 +19,7 @@ export const LoginForm: FC<LoginFormProps> = ({ form }) => {
         <div className="grid grid-cols-1 gap-3">
             <FormField
                 control={control}
-                name={path("email")}
+                name={path("login_email")}
                 render={() => {
                     return (
                         <FormItem>
@@ -34,7 +34,7 @@ export const LoginForm: FC<LoginFormProps> = ({ form }) => {
             />
             <FormField
                 control={control}
-                name={path("email")}
+                name={path("login_password")}
                 render={() => {
                     return (
                         <FormItem>
