@@ -32,12 +32,12 @@ export const ForgotPage = () => {
         <div className="w-full h-dvh flex items-center justify-center px-4">
             <Card className="border-0 rounded-3xl max-w-lg w-full">
                 <CardHeader className="px-11 py-10">
-                    <CardTitle>Авторизация</CardTitle>
+                    <CardTitle>Восстановление пароля</CardTitle>
                     <CardDescription>
                         Введите данные учетной записи для авторизации
                     </CardDescription>
                 </CardHeader>
-                
+
                 <form onSubmit={form.handleSubmit(onForgot)}>
                     <Form {...form}>
                         <CardContent className="px-11 pt-0">

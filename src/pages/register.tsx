@@ -42,7 +42,7 @@ export const Register = () => {
         <div className="w-full h-dvh flex items-center justify-center px-4">
             <Card className="border-0 rounded-3xl max-w-4xl w-full">
                 <CardHeader className="px-11 py-10">
-                    <CardTitle>Авторизация</CardTitle>
+                    <CardTitle>Регистрация пользователя</CardTitle>
                     <CardDescription>
                         Введите данные учетной записи для авторизации
                     </CardDescription>
@@ -51,7 +51,11 @@ export const Register = () => {
                     <Form {...form}>
                         <CardContent className="px-11 pt-0">
                             <RegisterForm form={nestedForm(form, "register")} />
-                            <LoadingButton loading={isLoading} type="submit" className="w-full mt-10 h-12">
+                            <LoadingButton
+                                loading={isLoading}
+                                type="submit"
+                                className="w-full mt-10 h-12"
+                            >
                                 Авторизаться
                             </LoadingButton>
                         </CardContent>
