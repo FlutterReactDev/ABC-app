@@ -1,6 +1,5 @@
 import { Category1, Category2 } from "@/assets/icons";
 import { Logo } from "@/components/atoms/logo";
-import { Settings } from "lucide-react";
 import { FC } from "react";
 import { Nav } from "./nav";
 interface SidebarProps {
@@ -43,16 +42,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
                             ),
                             to: "/a/selection",
                         },
-                        {
-                            title: "Настройки",
-                            icon: (props) => (
-                                <Settings
-                                    className="w-5 h-5"
-                                    color={props.color}
-                                />
-                            ),
-                            to: "/a/settings",
-                        },
+                        
                     ]}
                 />
             </div>

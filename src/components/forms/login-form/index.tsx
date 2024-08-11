@@ -20,12 +20,12 @@ export const LoginForm: FC<LoginFormProps> = ({ form }) => {
             <FormField
                 control={control}
                 name={path("login_email")}
-                render={() => {
+                render={({field}) => {
                     return (
                         <FormItem>
                             <FormLabel className="font-medium">Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="Введите ваш email"  className="h-12"/>
+                                <Input {...field} placeholder="Введите ваш email"  className="h-12"/>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -35,12 +35,12 @@ export const LoginForm: FC<LoginFormProps> = ({ form }) => {
             <FormField
                 control={control}
                 name={path("login_password")}
-                render={() => {
+                render={({field}) => {
                     return (
                         <FormItem>
                             <FormLabel className="font-medium">Пароль</FormLabel>
                             <FormControl>
-                                <PasswordInput placeholder="Введите ваш пароль" className="h-12"/>
+                                <PasswordInput {...field} placeholder="Введите ваш пароль" className="h-12"/>
                             </FormControl>
                             <FormMessage />
                         </FormItem>

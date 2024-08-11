@@ -57,7 +57,7 @@ const Map2GISComponent: FC<Map2GISProps> = (props) => {
     useState<boolean>(false);
   const initialMapOptionsRef = useRef<MapOptions>({
     ...initialMapOptions,
-    style: "e05ac437-fcc2-4845-ad74-b1de9ce07555",
+    style: "10153539-2026-4a0c-b7a3-52ddb3fed411",
     key: import.meta.env.VITE_2GIS_MAP_KEY,
   });
   const eventHandlersRef = useRef<Partial<MapEventHandlerTable>>({});

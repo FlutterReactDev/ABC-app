@@ -91,17 +91,29 @@ export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
     }
       `}
                 />
-                <Popover isOpen={isOpen} onOpen={onToggle} strategy="fixed"  closeOnBlur={false}>
+                <Popover
+                    isOpen={isOpen}
+                    onOpen={onToggle}
+                    strategy="fixed"
+                    closeOnBlur={false}
+                >
                     <PopoverTrigger>
-                        <Button size={"icon"} onClick={onToggle} className="z-0">
+                        <Button
+                            size={"icon"}
+                            onClick={onToggle}
+                            className="z-0"
+                        >
                             <Home />
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent maxWidth={"700px"} w={"100%"} >
+                    <PopoverContent maxWidth={"700px"} w={"100%"}>
                         <PopoverArrow />
                         <PopoverCloseButton />
 
-                        <PopoverBody className="w-full z-50" zIndex={"10000000"}>
+                        <PopoverBody
+                            className="w-full z-50"
+                            zIndex={"10000000"}
+                        >
                             <div className="relative bg-white rounded p-3.5 flex flex-col gap-3 max-w-2xl w-full text-xs">
                                 <Button
                                     className="absolute right-2 w-6 h-6"
@@ -128,117 +140,95 @@ export const ObjectMarker: FC<ObjectMarkerProps> = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex gap-2 items-center flex-wrap text-[12px]">
-                                    <div className="flex items-center gap-1">
-                                        <p className="text-destructive font-medium">
-                                            Апартаменты
-                                        </p>
-                                        <Tooltip
-                                            open={tooltipOpen}
-                                            onOpenChange={setTooltipOpen}
+                                <div className="flex gap-1 justify-between items-center">
+                                    <div className="flex gap-2 items-center flex-wrap text-[12px]">
+                                        <div className="flex items-center gap-1">
+                                            <p className="text-destructive font-medium">
+                                                Апартаменты
+                                            </p>
+                                            <Tooltip
+                                                open={tooltipOpen}
+                                                onOpenChange={setTooltipOpen}
+                                            >
+                                                <TooltipTrigger asChild>
+                                                    <CircleAlert className="text-foreground/50 w-4 h-4" />
+                                                </TooltipTrigger>
+                                                <TooltipContent className="max-w-52 text-center">
+                                                    Только домены 2 или 3
+                                                    уровня: site.ru или
+                                                    moscow.ru, без возможности
+                                                    выбора страницы или раздела
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </div>
+                                        <Separator
+                                            orientation="vertical"
+                                            className="h-4"
+                                        />
+                                        <div className="flex items-center gap-2">
+                                            <p className="text-foreground/50">
+                                                Класс жилья:
+                                            </p>
+                                            <p className="text-foreground font-medium">
+                                                Бизнес
+                                            </p>
+                                        </div>
+                                        <Separator
+                                            orientation="vertical"
+                                            className="h-4"
+                                        />
+                                        <div className="flex items-center gap-2">
+                                            <p className="text-foreground/50">
+                                                Отделка:
+                                            </p>
+                                            <p className="text-foreground font-medium">
+                                                Да
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-1 ">
+                                        <Button
+                                            className="text-xs"
+                                            onClick={() => {
+                                                setActiveSlide(0);
+                                                swiperInstance?.slideTo(0);
+                                            }}
+                                            variant={"secondary"}
+                                            {...(activeSlide == 0 && {
+                                                variant: "default",
+                                            })}
                                         >
-                                            <TooltipTrigger asChild>
-                                                <CircleAlert className="text-foreground/50 w-4 h-4" />
-                                            </TooltipTrigger>
-                                            <TooltipContent className="max-w-52 text-center">
-                                                Только домены 2 или 3 уровня:
-                                                site.ru или moscow.ru, без
-                                                возможности выбора страницы или
-                                                раздела
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </div>
-                                    <Separator
-                                        orientation="vertical"
-                                        className="h-4"
-                                    />
-                                    <div className="flex items-center gap-2">
-                                        <p className="text-foreground/50">
-                                            Класс жилья:
-                                        </p>
-                                        <p className="text-foreground font-medium">
-                                            Бизнес
-                                        </p>
-                                    </div>
-                                    <Separator
-                                        orientation="vertical"
-                                        className="h-4"
-                                    />
-                                    <div className="flex items-center gap-2">
-                                        <p className="text-foreground/50">
-                                            Отделка:
-                                        </p>
-                                        <p className="text-foreground font-medium">
-                                            Да
-                                        </p>
-                                    </div>
-                                    <Separator
-                                        orientation="vertical"
-                                        className="h-4"
-                                    />
-                                    <div className="flex items-center gap-2">
-                                        <p className="text-foreground/50">
-                                            Потолки:
-                                        </p>
-                                        <p className="text-foreground font-medium">
-                                            3,1м
-                                        </p>
-                                    </div>
-                                    <Separator
-                                        orientation="vertical"
-                                        className="h-4"
-                                    />
-                                    <div className="flex items-center gap-2">
-                                        <p className="text-foreground/50">
-                                            Парковка:
-                                        </p>
-                                        <p className="text-foreground font-medium">
-                                            подземная
-                                        </p>
+                                            Сдан
+                                        </Button>
+                                        <Button
+                                            variant={"secondary"}
+                                            className="text-xs"
+                                            {...(activeSlide == 1 && {
+                                                variant: "default",
+                                            })}
+                                            onClick={() => {
+                                                setActiveSlide(1);
+                                                swiperInstance?.slideTo(1);
+                                            }}
+                                        >
+                                            2024
+                                        </Button>
+                                        <Button
+                                            variant={"secondary"}
+                                            className="text-xs"
+                                            {...(activeSlide == 2 && {
+                                                variant: "default",
+                                            })}
+                                            onClick={() => {
+                                                setActiveSlide(2);
+                                                swiperInstance?.slideTo(2);
+                                            }}
+                                        >
+                                            2025
+                                        </Button>
                                     </div>
                                 </div>
 
-                                <div className="flex gap-1 justify-end ">
-                                    <Button
-                                        className="text-xs"
-                                        onClick={() => {
-                                            setActiveSlide(0);
-                                            swiperInstance?.slideTo(0);
-                                        }}
-                                        variant={"secondary"}
-                                        {...(activeSlide == 0 && {
-                                            variant: "default",
-                                        })}
-                                    >
-                                        Сдан
-                                    </Button>
-                                    <Button
-                                        variant={"secondary"}
-                                        className="text-xs"
-                                        {...(activeSlide == 1 && {
-                                            variant: "default",
-                                        })}
-                                        onClick={() => {
-                                            setActiveSlide(1);
-                                            swiperInstance?.slideTo(1);
-                                        }}
-                                    >
-                                        2024
-                                    </Button>
-                                    <Button
-                                        variant={"secondary"}
-                                        className="text-xs"
-                                        {...(activeSlide == 2 && {
-                                            variant: "default",
-                                        })}
-                                        onClick={() => {
-                                            setActiveSlide(2);
-                                            swiperInstance?.slideTo(2);
-                                        }}
-                                    >
-                                        2025
-                                    </Button>
-                                </div>
                                 <Swiper
                                     className="w-full h-full"
                                     onSwiper={(swiper) => {

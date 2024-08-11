@@ -1,15 +1,17 @@
+import { useLoginMutation } from "@/api/Auth";
 import { LoginForm } from "@/components/forms/login-form";
 import { loginSchmea } from "@/components/forms/login-form/schema";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
+import { LoadingButton } from "@/components/ui/loading-button";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "@tanstack/react-router";
@@ -20,11 +22,26 @@ const schema = object({
     login: loginSchmea,
 });
 export const Login = () => {
+    const [login, { isLoading }] = useLoginMutation();
     const form = useForm({
         resolver: yupResolver(schema),
     });
-    const onLogin = (data: InferType<typeof schema>) => {
-        console.log(data);
+    const onLogin = async (data: InferType<typeof schema>) => {
+        // const response = await fetch(
+        //     "https://admin.abc-data.ru/CRM/login.php",
+        //     {
+        //         method: "POST",
+        //         body: JSON.stringify(data.login),
+        //     }
+        // );
+        try {
+            const response = await login({
+                ...data.login,
+            }).unwrap();
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <div className="w-full h-dvh flex items-center justify-center px-4">
@@ -39,9 +56,13 @@ export const Login = () => {
                     <Form {...form}>
                         <CardContent className="px-11 pt-0">
                             <LoginForm form={nestedForm(form, "login")} />
-                            <Button type="submit" className="w-full mt-10 h-12">
+                            <LoadingButton
+                                type="submit"
+                                className="w-full mt-10 h-12"
+                                loading={isLoading}
+                            >
                                 Авторизаться
-                            </Button>
+                            </LoadingButton>
                         </CardContent>
                         <CardFooter className="flex flex-col gap-4 px-11">
                             <div className="flex items-center justify-center w-full">
@@ -63,8 +84,16 @@ export const Login = () => {
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-2 w-full">
-                                <Button className="w-full h-12" variant={"outline"}>@testname</Button>
-                                <Button className="w-full h-12" variant={"outline"}>
+                                <Button
+                                    className="w-full h-12"
+                                    variant={"outline"}
+                                >
+                                    @testname
+                                </Button>
+                                <Button
+                                    className="w-full h-12"
+                                    variant={"outline"}
+                                >
                                     <Phone />
                                     +7 (777) 777-77-77
                                 </Button>

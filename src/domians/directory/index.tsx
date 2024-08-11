@@ -20056,7 +20056,7 @@ export const DirectoryPage = () => {
                             )}
                         </div>
                     )}
-                    <div className="h-dvh sticky rounded-lg top-0">
+                    <div className="h-dvh sticky rounded-lg top-0 ">
                         <Map2GIS
                             initialMapOptions={{
                                 center: [74.606309, 42.848305],
@@ -20070,6 +20070,15 @@ export const DirectoryPage = () => {
                                 coordinates={[74.620365, 42.852053]}
                             />
                         </Map2GIS>
+                        {collapsed && (
+                            <Button
+                                onClick={onToggleCollapse}
+                                className="absolute top-2 left-2"
+                            >
+                                <ChevronRight className="w-4 h-4" />
+                                Развернуть
+                            </Button>
+                        )}
                     </div>
                 </div>
             )}

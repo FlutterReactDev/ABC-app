@@ -20,7 +20,7 @@ export const DirectoryFilter = () => {
     const [open, setOpen] = useState(false);
     
     return (
-        <div className="bg-white p-2 ">
+        <div className="bg-white p-2 pb-0 ">
             <Collapsible open={open} onOpenChange={setOpen}>
                 <div className="flex gap-4 flex-col">
                     {!open && (

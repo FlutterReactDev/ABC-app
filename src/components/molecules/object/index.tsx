@@ -801,7 +801,7 @@ export const ObjectCard: FC<ObjectProps> = (props) => {
     return (
         <div
             className={cn(
-                "bg-white p-4 flex flex-col gap-1 text-[13px] relative text-xs",
+                "bg-white p-4 pb-0 flex flex-col gap-1 text-[13px] relative text-xs",
                 isTransfered && "bg-primary/10"
             )}
         >

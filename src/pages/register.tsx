@@ -1,3 +1,4 @@
+import { useRegisterMutation } from "@/api/Auth";
 import { RegisterForm } from "@/components/forms/register-form";
 import { registerSchema } from "@/components/forms/register-form/schema";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
+import { LoadingButton } from "@/components/ui/loading-button";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "@tanstack/react-router";
@@ -21,11 +23,19 @@ const schema = object({
     register: registerSchema,
 });
 export const Register = () => {
+    const [register, { isLoading }] = useRegisterMutation();
     const form = useForm({
         resolver: yupResolver(schema),
     });
-    const onRegister = (data: InferType<typeof schema>) => {
-        console.log(data);
+    const onRegister = async (data: InferType<typeof schema>) => {
+        try {
+            const response = await register({
+                ...data.register,
+                reg_tg: "12321",
+            }).unwrap();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -41,9 +51,9 @@ export const Register = () => {
                     <Form {...form}>
                         <CardContent className="px-11 pt-0">
                             <RegisterForm form={nestedForm(form, "register")} />
-                            <Button type="submit" className="w-full mt-10 h-12">
+                            <LoadingButton loading={isLoading} type="submit" className="w-full mt-10 h-12">
                                 Авторизаться
-                            </Button>
+                            </LoadingButton>
                         </CardContent>
                         <CardFooter className="flex flex-col gap-4 px-11">
                             <div className="flex items-center justify-center w-full">
