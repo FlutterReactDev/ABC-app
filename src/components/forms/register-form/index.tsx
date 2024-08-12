@@ -18,7 +18,7 @@ interface RegisterFormProps {
 export const RegisterForm: FC<RegisterFormProps> = ({ form }) => {
     const { control, path } = form;
     return (
-        <div className="grid grid-cols-2 gap-4 items-start justify-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start justify-start">
             <div className="grid grid-cols-1 gap-2">
                 <FormField
                     control={control}
