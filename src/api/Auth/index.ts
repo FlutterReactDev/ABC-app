@@ -6,18 +6,18 @@ const authApi = baseApi.injectEndpoints({
         return {
             login: build.mutation<void, LoginRequest>({
                 query: (data) => ({
-                    url: "/CRM/login",
+                    url: "/CRM/login.php",
                     method: "POST",
-                    body: data,
+                    body: JSON.stringify(data),
                 }),
             }),
-            register:build.mutation<void, RegisterRequest>({
-                query:(data) => ({
-                    url: "/CRM/register",
+            register: build.mutation<void, RegisterRequest>({
+                query: (data) => ({
+                    url: "/CRM/register.php",
                     method: "POST",
-                    body: data,
-                })
-            })
+                    body: JSON.stringify(data),
+                }),
+            }),
         };
     },
 });
