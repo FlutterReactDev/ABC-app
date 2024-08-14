@@ -1,8 +1,18 @@
 import { useGetProfileQuery } from "@/api/User";
-import { FC, PropsWithChildren } from "react";
+import { Navigate } from "@tanstack/react-router";
+import { FC, PropsWithChildren, useEffect } from "react";
 
 export const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
-    const { data } = useGetProfileQuery(4444778900);
+    const { isSuccess, isError, data, error } = useGetProfileQuery(4444778900);
+    console.log(error);
 
-    return <>{children}</>;
+    if (isSuccess) {
+        return <>{children}</>;
+    }
+
+    if (isError) {
+        return <Navigate to="/login" />;
+    }
+
+    return <></>;
 };

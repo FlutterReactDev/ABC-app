@@ -27,13 +27,6 @@ export const Login = () => {
         resolver: yupResolver(schema),
     });
     const onLogin = async (data: InferType<typeof schema>) => {
-        // const response = await fetch(
-        //     "https://admin.abc-data.ru/CRM/login.php",
-        //     {
-        //         method: "POST",
-        //         body: JSON.stringify(data.login),
-        //     }
-        // );
         try {
             const response = await login({
                 ...data.login,
