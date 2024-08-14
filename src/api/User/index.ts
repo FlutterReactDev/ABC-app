@@ -9,9 +9,9 @@ const userApi = baseApi.injectEndpoints({
                     return {
                         url: "/CRM/user.php",
                         method: "POST",
-                        body: {
+                        body: JSON.stringify( {
                             user_id: userId,
-                        },
+                        }),
                     };
                 },
             }),
