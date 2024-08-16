@@ -98,7 +98,7 @@ export const Login = () => {
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-2 w-full">
-                                <a href="https://t.me/anatskoK" target="_blank">
+                            <a href="https://t.me/anatskoK" target="_blank">
                                     <Button
                                         className="w-full h-12"
                                         variant={"outline"}
@@ -107,15 +107,16 @@ export const Login = () => {
                                         @anatskoK
                                     </Button>
                                 </a>
-
-                                <Button
-                                    className="w-full h-12"
-                                    variant={"outline"}
-                                    type="button"
-                                >
-                                    <Phone />
-                                    +7 (495) 135-16-60
-                                </Button>
+                                <a href="tel:+74951351660" target="_blank">
+                                    <Button
+                                        className="w-full h-12"
+                                        variant={"outline"}
+                                        type="button"
+                                    >
+                                        <Phone />
+                                        +7 (495) 135-16-60
+                                    </Button>
+                                </a>
                             </div>
                         </CardFooter>
                     </Form>
