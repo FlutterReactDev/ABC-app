@@ -1,3 +1,4 @@
+import { UserResponseSuccess } from "@/api/User/types";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -12,16 +13,14 @@ import { ChevronDown, LogOut, User } from "lucide-react";
 import { useState } from "react";
 
 interface AvatarDropdownProps {
-    user: {
-        name: string;
-        avatarUrl: string;
-        initials: string;
-        email: string;
-    };
+    user: UserResponseSuccess;
 }
 
 export const AvatarDropdown = (props: AvatarDropdownProps) => {
-    const { user } = props;
+    const {
+        user: { name, surname },
+    } = props;
+
     const [open, setOpen] = useState(false);
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -36,7 +35,9 @@ export const AvatarDropdown = (props: AvatarDropdownProps) => {
                     </Button>
                     <div className="flex flex-col ">
                         <div className="flex gap-1">
-                            <div className="text-sm">{user.name}</div>
+                            <div className="text-sm">
+                                {name} {surname}
+                            </div>
                         </div>
                     </div>
                     <div>

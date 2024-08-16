@@ -12,12 +12,15 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { LoadingButton } from "@/components/ui/loading-button";
+import { USER_ID } from "@/constants/user";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { InferType, object } from "yup";
+import qs from "qs";
 const schema = object({
     login: loginSchmea,
 });
@@ -26,14 +29,32 @@ export const Login = () => {
     const form = useForm({
         resolver: yupResolver(schema),
     });
+    const navigate = useNavigate();
     const onLogin = async (data: InferType<typeof schema>) => {
+        const parsedQueryString = qs.parse(window.location.search.slice(1));
         try {
             const response = await login({
                 ...data.login,
             }).unwrap();
-            console.log(response);
+
+            if (response.access == "allow") {
+                if (
+                    parsedQueryString.from &&
+                    typeof parsedQueryString.from == "string"
+                ) {
+                    navigate({ to: parsedQueryString.from });
+                } else {
+                    navigate({ to: "/a" });
+                }
+
+                localStorage.setItem(USER_ID, JSON.stringify(response.user_id));
+            }
+
+            if (response.access == "block") {
+                toast.error(response.message);
+            }
         } catch (error) {
-            console.log(error);
+            toast(JSON.stringify(error));
         }
     };
     return (

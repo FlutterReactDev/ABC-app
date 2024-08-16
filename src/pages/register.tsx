@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { InferType, object } from "yup";
 
 const schema = object({
@@ -31,10 +32,10 @@ export const Register = () => {
         try {
             const response = await register({
                 ...data.register,
-                reg_tg: "12321",
             }).unwrap();
+            console.log(response);
         } catch (error) {
-            console.log(error);
+            toast.error(JSON.stringify(error));
         }
     };
 
@@ -51,49 +52,55 @@ export const Register = () => {
                     <Form {...form}>
                         <CardContent className="px-11 pt-0">
                             <RegisterForm form={nestedForm(form, "register")} />
-                            <LoadingButton
-                                loading={isLoading}
-                                type="submit"
-                                className="w-full mt-10 h-12"
-                            >
-                                Авторизаться
-                            </LoadingButton>
+                            <div className="grid grid-cols-2">
+                                <LoadingButton
+                                    loading={isLoading}
+                                    type="submit"
+                                    className="w-full mt-10 h-12"
+                                >
+                                    Авторизаться
+                                </LoadingButton>
+                            </div>
                         </CardContent>
-                        <CardFooter className="flex flex-col gap-4 px-11">
-                            <div className="flex items-center justify-center w-full">
-                                <p>У вас уже есть учетная запись?</p>
-                                <Link to="/login">
-                                    <Button variant={"link"}>
-                                        Авторизоваться
+                        <div className="grid grid-cols-2 px-11">
+                            <CardFooter className="flex flex-col gap-4 pb-10 px-0">
+                                <div className="flex items-center justify-center w-full">
+                                    <p>У вас уже есть учетная запись?</p>
+                                    <Link to="/login">
+                                        <Button variant={"link"} type="button">
+                                            Авторизоваться
+                                        </Button>
+                                    </Link>
+                                </div>
+                                <div className="relative w-full">
+                                    <div className="absolute inset-0 flex items-center">
+                                        <span className="w-full border-t" />
+                                    </div>
+                                    <div className="relative flex justify-center text-xs uppercase">
+                                        <span className="bg-background px-2 text-muted-foreground">
+                                            Помощь
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2 w-full">
+                                    <Button
+                                        className="w-full h-12"
+                                        variant={"outline"}
+                                        type="button"
+                                    >
+                                        @testname
                                     </Button>
-                                </Link>
-                            </div>
-                            <div className="relative w-full">
-                                <div className="absolute inset-0 flex items-center">
-                                    <span className="w-full border-t" />
+                                    <Button
+                                        className="w-full h-12"
+                                        variant={"outline"}
+                                        type="button"
+                                    >
+                                        <Phone />
+                                        +7 (777) 777-77-77
+                                    </Button>
                                 </div>
-                                <div className="relative flex justify-center text-xs uppercase">
-                                    <span className="bg-background px-2 text-muted-foreground">
-                                        Помощь
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 w-full">
-                                <Button
-                                    className="w-full h-12"
-                                    variant={"outline"}
-                                >
-                                    @testname
-                                </Button>
-                                <Button
-                                    className="w-full h-12"
-                                    variant={"outline"}
-                                >
-                                    <Phone />
-                                    +7 (777) 777-77-77
-                                </Button>
-                            </div>
-                        </CardFooter>
+                            </CardFooter>
+                        </div>
                     </Form>
                 </form>
             </Card>

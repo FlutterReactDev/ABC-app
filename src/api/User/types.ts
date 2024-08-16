@@ -1,4 +1,6 @@
-export interface User {
+export type UserResponse = UserResponseSuccess | UserResponseError;
+
+export interface UserResponseSuccess {
     user_id: number;
     access: "allow";
     name: string;
@@ -9,4 +11,9 @@ export interface User {
     email: string;
     alert: string;
     role: string;
+}
+
+export interface UserResponseError {
+    access: "block";
+    message: string;
 }

@@ -8,6 +8,7 @@ export const registerSchema = object({
     reg_password2: string()
         .oneOf([ref("reg_password")], "Passwords must match")
         .required(),
+    reg_tg: string().required(),
 });
 
 export type RegisterType = InferType<typeof registerSchema>;

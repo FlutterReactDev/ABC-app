@@ -1,18 +1,21 @@
-import { useGetProfileQuery } from "@/api/User";
+import { USER_ID } from "@/constants/user";
 import { Navigate } from "@tanstack/react-router";
-import { FC, PropsWithChildren, useEffect } from "react";
+import { FC, PropsWithChildren } from "react";
 
 export const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
-    const { isSuccess, isError, data, error } = useGetProfileQuery(4444778900);
-    console.log(error);
+    const userId = localStorage.getItem(USER_ID);
 
-    if (isSuccess) {
-        return <>{children}</>;
+    if (!userId) {
+        return (
+            <Navigate
+                to="/login"
+                search={{
+                    from: location.pathname,
+                }}
+                from={location.pathname}
+            />
+        );
     }
 
-    if (isError) {
-        return <Navigate to="/login" />;
-    }
-
-    return <></>;
+    return <>{children}</>;
 };

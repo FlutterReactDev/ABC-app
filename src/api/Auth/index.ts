@@ -1,10 +1,16 @@
 import { baseApi } from "../Base";
-import { LoginRequest, RegisterRequest } from "./types";
+import {
+    LoginRequest,
+    LoginResponse,
+    RegisterRequest,
+    ForgotPasswordRequest,
+    ForgotPasswordResponse,
+} from "./types";
 
 const authApi = baseApi.injectEndpoints({
     endpoints(build) {
         return {
-            login: build.mutation<void, LoginRequest>({
+            login: build.mutation<LoginResponse, LoginRequest>({
                 query: (data) => ({
                     url: "/CRM/login.php",
                     method: "POST",
@@ -18,8 +24,23 @@ const authApi = baseApi.injectEndpoints({
                     body: JSON.stringify(data),
                 }),
             }),
+
+            forgotPassword: build.mutation<
+                ForgotPasswordResponse,
+                ForgotPasswordRequest
+            >({
+                query: (data) => ({
+                    url: "/forgot",
+                    body: JSON.stringify(data),
+                    method: "POST",
+                }),
+            }),
         };
     },
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const {
+    useLoginMutation,
+    useRegisterMutation,
+    useForgotPasswordMutation,
+} = authApi;

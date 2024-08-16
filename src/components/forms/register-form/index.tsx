@@ -128,6 +128,27 @@ export const RegisterForm: FC<RegisterFormProps> = ({ form }) => {
                         );
                     }}
                 />
+                <FormField
+                    control={control}
+                    name={path("reg_tg")}
+                    render={({ field }) => {
+                        return (
+                            <FormItem>
+                                <FormLabel className="font-medium">
+                                    Телеграмм акк*
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder="Введите TG"
+                                        className="h-12"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        );
+                    }}
+                />
             </div>
         </div>
     );

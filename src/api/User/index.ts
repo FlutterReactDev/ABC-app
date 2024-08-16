@@ -1,15 +1,15 @@
 import { baseApi } from "../Base";
-import { User } from "./types";
+import { UserResponse } from "./types";
 
 const userApi = baseApi.injectEndpoints({
     endpoints(build) {
         return {
-            getProfile: build.query<User, number>({
+            getProfile: build.query<UserResponse, number>({
                 query: (userId) => {
                     return {
                         url: "/CRM/user.php",
                         method: "POST",
-                        body: JSON.stringify( {
+                        body: JSON.stringify({
                             user_id: userId,
                         }),
                     };

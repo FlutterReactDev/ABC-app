@@ -10,6 +10,8 @@ import { FC } from "react";
 import { FormLabel } from "@chakra-ui/react";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/atoms/password-input";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 interface LoginFormProps {
     form: NestedForm<LoginType>;
 }
@@ -20,12 +22,16 @@ export const LoginForm: FC<LoginFormProps> = ({ form }) => {
             <FormField
                 control={control}
                 name={path("login_email")}
-                render={({field}) => {
+                render={({ field }) => {
                     return (
                         <FormItem>
                             <FormLabel className="font-medium">Email</FormLabel>
                             <FormControl>
-                                <Input {...field} placeholder="Введите ваш email"  className="h-12"/>
+                                <Input
+                                    {...field}
+                                    placeholder="Введите ваш email"
+                                    className="h-12"
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -35,12 +41,26 @@ export const LoginForm: FC<LoginFormProps> = ({ form }) => {
             <FormField
                 control={control}
                 name={path("login_password")}
-                render={({field}) => {
+                render={({ field }) => {
                     return (
                         <FormItem>
-                            <FormLabel className="font-medium">Пароль</FormLabel>
+                            <div className="flex items-center justify-between">
+                                <FormLabel className="font-medium">
+                                    Пароль
+                                </FormLabel>
+                                <Link to="/forgot">
+                                    <Button variant={"link"} type="button">
+                                        Забыли пароль?
+                                    </Button>
+                                </Link>
+                            </div>
+
                             <FormControl>
-                                <PasswordInput {...field} placeholder="Введите ваш пароль" className="h-12"/>
+                                <PasswordInput
+                                    {...field}
+                                    placeholder="Введите ваш пароль"
+                                    className="h-12"
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

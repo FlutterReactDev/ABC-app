@@ -11,20 +11,20 @@ import { Menu, Settings } from "lucide-react";
 import { Nav } from "../sidebar/nav";
 import { Category1, Category2 } from "@/assets/icons";
 import { useState } from "react";
-
-const user = {
-    name: "Егор Соколов",
-    avatarUrl:
-        "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80",
-    initials: "ЕС",
-    email: "denaeshev@gmail.com",
-};
+import { useGetProfileQuery } from "@/api/User";
+import { USER_ID } from "@/constants/user";
 
 export const Header = () => {
     const [open, setOpen] = useState(false);
+    const storage = localStorage.getItem(USER_ID);
+    const userId = storage ? (JSON.parse(storage) as number) : null;
+
+    const { data } = useGetProfileQuery(userId as number);
+
     return (
         <header className="border-b bg-white flex items-center px-5 gap-4 md:px-14 justify-end h-[50px] pointer-events-auto sticky top-0 z-50">
-            <AvatarDropdown user={user} />
+            {data?.access == "allow" && <AvatarDropdown user={data} />}
+
             <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
                     <Button

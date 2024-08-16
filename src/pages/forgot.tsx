@@ -16,7 +16,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { InferType, object } from "yup";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useForgotPasswordMutation } from "@/api/Auth";
+import { LoadingButton } from "@/components/ui/loading-button";
+import { toast } from "sonner";
 const schema = object({
     forgot: forgotSchema,
 });
@@ -24,9 +27,27 @@ export const ForgotPage = () => {
     const form = useForm({
         resolver: yupResolver(schema),
     });
+    const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
+    const navigate = useNavigate();
+    const onForgot = async (data: InferType<typeof schema>) => {
+        try {
+            const response = await forgotPassword({
+                ...data.forgot,
+            }).unwrap();
 
-    const onForgot = (data: InferType<typeof schema>) => {
-        console.log(data);
+            if (response.access == "allow") {
+                toast.success(response.message);
+                navigate({
+                    to: "/login",
+                });
+            }
+
+            if (response.access == "block") {
+                toast.error(response.message);
+            }
+        } catch (error) {
+            toast.error(JSON.stringify(error));
+        }
     };
     return (
         <div className="w-full h-dvh flex items-center justify-center px-4">
@@ -42,9 +63,13 @@ export const ForgotPage = () => {
                     <Form {...form}>
                         <CardContent className="px-11 pt-0">
                             <ForgotForm form={nestedForm(form, "forgot")} />
-                            <Button type="submit" className="w-full mt-10 h-12">
+                            <LoadingButton
+                                loading={isLoading}
+                                type="submit"
+                                className="w-full mt-10 h-12"
+                            >
                                 Отправить на почту
-                            </Button>
+                            </LoadingButton>
                         </CardContent>
                         <CardFooter className="flex flex-col gap-4 px-11">
                             <div className="flex items-center justify-center w-full">
