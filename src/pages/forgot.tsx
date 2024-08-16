@@ -91,19 +91,25 @@ export const ForgotPage = () => {
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-2 w-full">
-                                <Button
-                                    className="w-full h-12"
-                                    variant={"outline"}
-                                >
-                                    @testname
-                                </Button>
-                                <Button
-                                    className="w-full h-12"
-                                    variant={"outline"}
-                                >
-                                    <Phone />
-                                    +7 (777) 777-77-77
-                                </Button>
+                                <a href="https://t.me/anatskoK" target="_blank">
+                                    <Button
+                                        className="w-full h-12"
+                                        variant={"outline"}
+                                        type="button"
+                                    >
+                                        @anatskoK
+                                    </Button>
+                                </a>
+                                <a href="tel:+74951351660" target="_blank">
+                                    <Button
+                                        className="w-full h-12"
+                                        variant={"outline"}
+                                        type="button"
+                                    >
+                                        <Phone />
+                                        +7 (495) 135-16-60
+                                    </Button>
+                                </a>
                             </div>
                         </CardFooter>
                     </Form>
