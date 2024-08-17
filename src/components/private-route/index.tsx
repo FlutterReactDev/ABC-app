@@ -6,13 +6,12 @@ import { FC, PropsWithChildren } from "react";
 export const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
     const userId = localStorage.getItem(USER_ID);
     const expiresAt = localStorage.getItem(EXPIRES_AT);
-    console.log(expiresAt);
-    
+
     if (userId && expiresAt && isBefore(new Date(), new Date(expiresAt))) {
         return <>{children}</>;
-    }
-
-    if (!userId) {
+    } else {
+        localStorage.removeItem(USER_ID);
+        localStorage.removeItem(EXPIRES_AT);
         return (
             <Navigate
                 to="/login"

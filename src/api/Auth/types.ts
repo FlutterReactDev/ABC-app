@@ -12,8 +12,19 @@ export interface RegisterRequest {
     reg_password2: string;
 }
 
+export interface RegisterResponseSuccess {
+    access: "allow";
+    message: string;
+}
+
+export interface RegisterResponseError {
+    access: "block";
+    message: string;
+}
+
+export type RegisterResponse = RegisterResponseSuccess | RegisterResponseError;
 export interface ForgotPasswordRequest {
-    email: string;
+    forgot_email: string;
 }
 
 export type LoginResponse = LoginResponseSuccess | LoginResponseError;

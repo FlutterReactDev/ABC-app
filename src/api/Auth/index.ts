@@ -5,6 +5,7 @@ import {
     RegisterRequest,
     ForgotPasswordRequest,
     ForgotPasswordResponse,
+    RegisterResponse,
 } from "./types";
 
 const authApi = baseApi.injectEndpoints({
@@ -17,9 +18,9 @@ const authApi = baseApi.injectEndpoints({
                     body: JSON.stringify(data),
                 }),
             }),
-            register: build.mutation<void, RegisterRequest>({
+            register: build.mutation<RegisterResponse, RegisterRequest>({
                 query: (data) => ({
-                    url: "/CRM/registration.php",
+                    url: "/CRM/login.php",
                     method: "POST",
                     body: JSON.stringify(data),
                 }),
@@ -30,7 +31,7 @@ const authApi = baseApi.injectEndpoints({
                 ForgotPasswordRequest
             >({
                 query: (data) => ({
-                    url: "/forgot",
+                    url: "/CRM/login.php",
                     body: JSON.stringify(data),
                     method: "POST",
                 }),

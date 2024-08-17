@@ -14,7 +14,7 @@ import { Form } from "@/components/ui/form";
 import { LoadingButton } from "@/components/ui/loading-button";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -28,12 +28,22 @@ export const Register = () => {
     const form = useForm({
         resolver: yupResolver(schema),
     });
+    const navigate = useNavigate();
     const onRegister = async (data: InferType<typeof schema>) => {
         try {
             const response = await register({
                 ...data.register,
             }).unwrap();
-            console.log(response);
+            if (response.access == "allow") {
+                toast.success(response.message);
+                navigate({
+                    to: "/login",
+                });
+            }
+
+            if (response.access == "block") {
+                toast.error(response.message);
+            }
         } catch (error) {
             toast.error(JSON.stringify(error));
         }

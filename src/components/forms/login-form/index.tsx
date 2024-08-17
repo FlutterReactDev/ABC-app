@@ -31,6 +31,7 @@ export const LoginForm: FC<LoginFormProps> = ({ form }) => {
                                     {...field}
                                     placeholder="Введите ваш email"
                                     className="h-12"
+                                    type="email"
                                 />
                             </FormControl>
                             <FormMessage />
