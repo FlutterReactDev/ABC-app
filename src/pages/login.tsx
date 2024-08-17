@@ -12,15 +12,16 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { LoadingButton } from "@/components/ui/loading-button";
-import { USER_ID } from "@/constants/user";
+import { EXPIRES_AT, USER_ID } from "@/constants/user";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "@tanstack/react-router";
+import { addMilliseconds } from "date-fns";
 import { Phone } from "lucide-react";
+import qs from "qs";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { InferType, object } from "yup";
-import qs from "qs";
 const schema = object({
     login: loginSchmea,
 });
@@ -48,6 +49,7 @@ export const Login = () => {
                 }
 
                 localStorage.setItem(USER_ID, JSON.stringify(response.user_id));
+                localStorage.setItem(EXPIRES_AT, JSON.stringify(addMilliseconds(new Date(), 600000)));
             }
 
             if (response.access == "block") {
@@ -98,7 +100,7 @@ export const Login = () => {
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-2 w-full">
-                            <a href="https://t.me/anatskoK" target="_blank">
+                                <a href="https://t.me/anatskoK" target="_blank">
                                     <Button
                                         className="w-full h-12"
                                         variant={"outline"}

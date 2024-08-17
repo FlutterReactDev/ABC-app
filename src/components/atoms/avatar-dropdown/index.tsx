@@ -4,11 +4,11 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuSeparator,
-    DropdownMenuTrigger,
+    DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
 import { ChevronDown, LogOut, User } from "lucide-react";
 import { useState } from "react";
 
@@ -51,9 +51,9 @@ export const AvatarDropdown = (props: AvatarDropdownProps) => {
                 </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuLabel>Мой аккаунт</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Настройки</DropdownMenuItem>
+                <Link to="/a/settings">
+                    <DropdownMenuItem>Мой аккаунт</DropdownMenuItem>
+                </Link>
 
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>

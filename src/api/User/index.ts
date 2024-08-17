@@ -1,5 +1,5 @@
 import { baseApi } from "../Base";
-import { UserResponse } from "./types";
+import { UpdateUserRequest, UpdateUserResponse, UserResponse } from "./types";
 
 const userApi = baseApi.injectEndpoints({
     endpoints(build) {
@@ -14,9 +14,24 @@ const userApi = baseApi.injectEndpoints({
                         }),
                     };
                 },
+                providesTags: ["User"],
+            }),
+
+            updateProfile: build.mutation<
+                UpdateUserResponse,
+                UpdateUserRequest
+            >({
+                query: (data) => ({
+                    url: "/CRM/user.php",
+                    method: "POST",
+                    body: JSON.stringify({
+                        ...data,
+                    }),
+                }),
+                invalidatesTags: ["User"],
             }),
         };
     },
 });
 
-export const { useGetProfileQuery } = userApi;
+export const { useGetProfileQuery, useUpdateProfileMutation } = userApi;
