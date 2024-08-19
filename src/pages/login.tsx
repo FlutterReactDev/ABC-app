@@ -62,7 +62,7 @@ export const Login = () => {
                 toast.error(response.message);
             }
         } catch (error) {
-            toast(JSON.stringify(error));
+            toast.error(JSON.stringify(error));
         }
     };
     useEffect(() => {

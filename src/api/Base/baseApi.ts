@@ -7,6 +7,7 @@ export const baseApi = createApi({
         headers: {
             "content-type": "text/plain;charset=UTF-8",
         },
+        credentials:"include"
     }),
     reducerPath: "baseApi",
     endpoints: () => ({}),
