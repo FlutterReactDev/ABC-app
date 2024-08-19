@@ -33,7 +33,7 @@ export function ThemeProvider({
     useEffect(() => {
         const root = window.document.documentElement;
 
-        root.classList.remove("light", "dark", "oragne");
+        root.classList.remove("light", "dark", "orange");
 
         if (theme === "system") {
             const systemTheme = window.matchMedia(
