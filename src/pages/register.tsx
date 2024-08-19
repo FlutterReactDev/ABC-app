@@ -12,10 +12,13 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { LoadingButton } from "@/components/ui/loading-button";
+import { useTheme } from "@/components/ui/theme-provider";
 import { nestedForm } from "@/lib/nested-form";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { InferType, object } from "yup";
@@ -24,6 +27,7 @@ const schema = object({
     register: registerSchema,
 });
 export const Register = () => {
+    const { setTheme } = useTheme();
     const [register, { isLoading }] = useRegisterMutation();
     const form = useForm({
         resolver: yupResolver(schema),
@@ -48,7 +52,11 @@ export const Register = () => {
             toast.error(JSON.stringify(error));
         }
     };
+    useEffect(() => {
+        setTheme("orange");
 
+        return () => setTheme("light");
+    }, [setTheme]);
     return (
         <div className="w-full h-dvh flex items-center justify-center px-4">
             <Card className="border-0 rounded-3xl max-w-4xl w-full">

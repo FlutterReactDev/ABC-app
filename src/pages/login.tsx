@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { LoadingButton } from "@/components/ui/loading-button";
+import { useTheme } from "@/components/ui/theme-provider";
 import { EXPIRES_AT, USER_ID } from "@/constants/user";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,6 +20,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { addMilliseconds } from "date-fns";
 import { Phone } from "lucide-react";
 import qs from "qs";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { InferType, object } from "yup";
@@ -26,6 +28,7 @@ const schema = object({
     login: loginSchmea,
 });
 export const Login = () => {
+    const { setTheme } = useTheme();
     const [login, { isLoading }] = useLoginMutation();
     const form = useForm({
         resolver: yupResolver(schema),
@@ -49,7 +52,10 @@ export const Login = () => {
                 }
 
                 localStorage.setItem(USER_ID, JSON.stringify(response.user_id));
-                localStorage.setItem(EXPIRES_AT, JSON.stringify(addMilliseconds(new Date(), 600000)));
+                localStorage.setItem(
+                    EXPIRES_AT,
+                    JSON.stringify(addMilliseconds(new Date(), 600000))
+                );
             }
 
             if (response.access == "block") {
@@ -59,6 +65,11 @@ export const Login = () => {
             toast(JSON.stringify(error));
         }
     };
+    useEffect(() => {
+        setTheme("orange");
+
+        return () => setTheme("light");
+    }, [setTheme]);
     return (
         <div className="w-full h-dvh flex items-center justify-center px-4">
             <Card className="border-0 rounded-3xl max-w-lg w-full">

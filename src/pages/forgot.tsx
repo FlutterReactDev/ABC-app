@@ -20,10 +20,13 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useForgotPasswordMutation } from "@/api/Auth";
 import { LoadingButton } from "@/components/ui/loading-button";
 import { toast } from "sonner";
+import { useTheme } from "@/components/ui/theme-provider";
+import { useEffect } from "react";
 const schema = object({
     forgot: forgotSchema,
 });
 export const ForgotPage = () => {
+    const { setTheme } = useTheme();
     const form = useForm({
         resolver: yupResolver(schema),
     });
@@ -49,6 +52,10 @@ export const ForgotPage = () => {
             toast.error(JSON.stringify(error));
         }
     };
+    useEffect(() => {
+        setTheme("orange");
+        return () => setTheme("light");
+    }, [setTheme]);
     return (
         <div className="w-full h-dvh flex items-center justify-center px-4">
             <Card className="border-0 rounded-3xl max-w-lg w-full">
