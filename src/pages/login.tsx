@@ -42,20 +42,19 @@ export const Login = () => {
             }).unwrap();
 
             if (response.access == "allow") {
+                localStorage.setItem(USER_ID, JSON.stringify(response.user_id));
+                localStorage.setItem(
+                    EXPIRES_AT,
+                    JSON.stringify(addMilliseconds(new Date(), 600000))
+                );
                 if (
                     parsedQueryString.from &&
                     typeof parsedQueryString.from == "string"
                 ) {
                     navigate({ to: parsedQueryString.from });
                 } else {
-                    navigate({ to: "/a" });
+                    navigate({ to: "/a/directory" });
                 }
-
-                localStorage.setItem(USER_ID, JSON.stringify(response.user_id));
-                localStorage.setItem(
-                    EXPIRES_AT,
-                    JSON.stringify(addMilliseconds(new Date(), 600000))
-                );
             }
 
             if (response.access == "block") {
