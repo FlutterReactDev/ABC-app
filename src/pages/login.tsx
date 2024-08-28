@@ -17,7 +17,7 @@ import { EXPIRES_AT, USER_ID } from "@/constants/user";
 import { nestedForm } from "@/lib/nested-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { addMilliseconds } from "date-fns";
+import { addDays } from "date-fns";
 import { Phone } from "lucide-react";
 import qs from "qs";
 import { useEffect } from "react";
@@ -45,7 +45,7 @@ export const Login = () => {
                 localStorage.setItem(USER_ID, JSON.stringify(response.user_id));
                 localStorage.setItem(
                     EXPIRES_AT,
-                    JSON.stringify(addMilliseconds(new Date(), 600000))
+                    JSON.stringify(addDays(new Date(), 7))
                 );
                 if (
                     parsedQueryString.from &&
